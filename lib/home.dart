@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:tan_hoang_thach/widget/header.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,18 +12,17 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Header(),
-            Text(
-              "Tan Hoang Thach",
-              style: TextStyle(color: Colors.black, fontSize: 35),
-            )
-          ],
-        ),
-      ),
+    return ResponsiveRowColumn(
+      columnMainAxisAlignment: MainAxisAlignment.start,
+      layout: ResponsiveRowColumnType.COLUMN,
+      children: [
+        // ResponsiveRowColumnItem(child: Header()),
+        ResponsiveRowColumnItem(
+            child: Text(
+          "Tan Hoang Thach",
+          style: TextStyle(color: Colors.black, fontSize: 35),
+        ))
+      ],
     );
   }
 }

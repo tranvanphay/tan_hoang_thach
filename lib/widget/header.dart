@@ -22,14 +22,13 @@ class Header extends StatelessWidget {
           )
         ],
         options: CarouselOptions(
-          height: 400,
-          aspectRatio: 16 / 9,
+          height: 259,
           viewportFraction: 0.8,
           initialPage: 0,
           enableInfiniteScroll: true,
           reverse: false,
           autoPlay: true,
-          autoPlayInterval: const Duration(seconds: 3),
+          autoPlayInterval: const Duration(seconds: 2),
           autoPlayAnimationDuration: const Duration(milliseconds: 800),
           autoPlayCurve: Curves.fastOutSlowIn,
           enlargeCenterPage: true,
