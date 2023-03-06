@@ -1,8 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-class Header extends StatelessWidget {
-  const Header({Key? key}) : super(key: key);
+class Header1 extends StatelessWidget {
+  const Header1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
