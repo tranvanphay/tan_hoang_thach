@@ -72,6 +72,7 @@ flutter:
   assets:
     - assets/header/
     - assets/icon/
+    - assets/desktop/
     - assets/bg.jpeg
     - assets/bg1.jpeg
     - assets/header_bg.png

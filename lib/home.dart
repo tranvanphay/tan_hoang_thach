@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,12 +5,16 @@ import 'package:flutter_shake_animated/flutter_shake_animated.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:tan_hoang_thach/utils/colors.dart';
-import 'package:tan_hoang_thach/widget/benefit.dart';
-import 'package:tan_hoang_thach/widget/footer_desktop.dart';
-import 'package:tan_hoang_thach/widget/footer_mobile.dart';
-import 'package:tan_hoang_thach/widget/header_desktop.dart';
-import 'package:tan_hoang_thach/widget/header_mobile.dart';
+import 'package:tan_hoang_thach/widget/desktop/about_us_desktop.dart';
+import 'package:tan_hoang_thach/widget/desktop/benefit_desktop.dart';
+import 'package:tan_hoang_thach/widget/desktop/footer_desktop.dart';
+import 'package:tan_hoang_thach/widget/desktop/introduce_desktop.dart';
+import 'package:tan_hoang_thach/widget/mobile/about_us_mobile.dart';
+import 'package:tan_hoang_thach/widget/mobile/benefit_mobile.dart';
+import 'package:tan_hoang_thach/widget/mobile/footer_mobile.dart';
+import 'package:tan_hoang_thach/widget/desktop/header_desktop.dart';
+import 'package:tan_hoang_thach/widget/mobile/header_mobile.dart';
+import 'package:tan_hoang_thach/widget/mobile/introduce_mobile.dart';
 import 'package:tan_hoang_thach/widget/proceduce.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -31,12 +33,14 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: Padding(
-          padding: EdgeInsets.all(8.w),
+          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               FloatingActionButton(
+                elevation: 0,
                 backgroundColor: Colors.transparent,
+                foregroundColor: Colors.transparent,
                 onPressed: () {
                   EasyLoading.showToast("Éo có gì đâu");
                 },
@@ -48,11 +52,13 @@ class _HomePageState extends State<HomePage> {
                     child: SvgPicture.asset(
                       'assets/icon/ic_messenger.svg',
                       semanticsLabel: 'Messenger',
-                      width: 48.r,
+                      width: context.isPhone ? 96.r : 48.r,
                     )),
               ),
               FloatingActionButton(
+                elevation: 0,
                 backgroundColor: Colors.transparent,
+                foregroundColor: Colors.transparent,
                 onPressed: () {
                   _makePhoneCall('0369391202');
                 },
@@ -64,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                   child: Icon(
                     Icons.phonelink_ring_outlined,
                     color: Colors.blue,
-                    size: 48.r,
+                    size: context.isPhone ? 56.r : 48.r,
                   ),
                 ),
               )
@@ -72,6 +78,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         body: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: context.isPhone ? 0 : 50.w),
           child: ResponsiveRowColumn(
             columnMainAxisAlignment: MainAxisAlignment.start,
             layout: ResponsiveRowColumnType.COLUMN,
@@ -95,11 +102,14 @@ class _HomePageState extends State<HomePage> {
                         },
                         style: ElevatedButton.styleFrom(
                             shape: StadiumBorder(), primary: Colors.redAccent),
-                        child: Text(
-                          "NHẬN ƯU ĐÃI NGAY",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: context.isPhone ? 20.sp : 6.sp),
+                        child: Padding(
+                          padding: EdgeInsets.all(8.r),
+                          child: Text(
+                            "NHẬN ƯU ĐÃI NGAY",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: context.isPhone ? 20.sp : 6.sp),
+                          ),
                         ),
                       ),
                     ),
@@ -120,34 +130,8 @@ class _HomePageState extends State<HomePage> {
                 ),
               )),
               ResponsiveRowColumnItem(
-                  child: Center(
-                child: Text(
-                  'THÔNG TIN SẢN PHẨM',
-                  style: TextStyle(
-                      color: Colors.blue,
-                      decoration: TextDecoration.none,
-                      fontWeight: FontWeight.bold,
-                      fontSize: context.isPhone ? 25.sp : 7.sp),
-                ),
-              )),
-              ResponsiveRowColumnItem(
-                  child: SizedBox(
-                height: context.isPhone ? 5.h : 15.h,
-              )),
-              ResponsiveRowColumnItem(
-                  child: Center(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15.w),
-                  child: Text(
-                    'Tân Hoàng Thạch là cơ sở sản xuất, thi công màn rèm uy tín với hơn 10 năm kinh nghiệm, mạng lưới phân phối lớn ở các tỉnh miền Trung, miền Nam và các tỉnh lân cận. Chúng tôi luôn đặt ví trí khách hàng lên hàng đầu với tiêu chí “ Người thật - Việc thật ”',
-                    style: TextStyle(
-                        color: AppColor.textGrey,
-                        decoration: TextDecoration.none,
-                        fontSize: context.isPhone ? 18.sp : 4.sp),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              )),
+                  child:
+                      context.isPhone ? IntroduceMobile() : IntroduceDesktop()),
               ResponsiveRowColumnItem(
                   child: Center(
                 child: Padding(
@@ -162,28 +146,9 @@ class _HomePageState extends State<HomePage> {
                 ),
               )),
               ResponsiveRowColumnItem(
-                  child: Center(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15.w),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                        color: Colors.blueGrey,
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Tân Hoàng Thạch chuyên thi công, thiết kế màn rèm cho nhà ở, văn phòng, chung cư hay địa điểm kinh doanh với mẫu mã đa dạng, độ thẩm mĩ cao phù hợp với mọi không gian. Sản phẩm của chúng tôi mang độ bền cao, dễ dàng tháo - lắp, vệ sinh. ',
-                        style: TextStyle(
-                            color: Colors.white,
-                            decoration: TextDecoration.none,
-                            fontSize: context.isPhone ? 18.sp : 4.sp),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                ),
-              )),
-              const ResponsiveRowColumnItem(child: Benefit()),
+                  child: context.isPhone ? AboutUsMobile() : AboutUsDesktop()),
+              ResponsiveRowColumnItem(
+                  child: context.isPhone ? BenefitMobile() : BenefitDesktop()),
               const ResponsiveRowColumnItem(child: Proceduce()),
               ResponsiveRowColumnItem(
                   child: context.isPhone ? FooterMobile() : FooterDesktop()),

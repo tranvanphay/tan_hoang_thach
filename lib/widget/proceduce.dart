@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 import 'package:tan_hoang_thach/utils/colors.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
@@ -11,14 +10,12 @@ class Proceduce extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveRowColumn(
-      layout: ResponsiveRowColumnType.COLUMN,
-      columnCrossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ResponsiveRowColumnItem(
-            child: Center(
+        Center(
           child: Text(
-            'BẠN ĐANG TÌM ĐƠN VỊ CUNG CẤP MÀN RÈM UY TÍN?',
+            'Bạn đang tìm đơn vị cung cấp màn rèm uy tín?',
             textAlign: TextAlign.center,
             style: TextStyle(
                 color: Colors.blue,
@@ -26,13 +23,11 @@ class Proceduce extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 fontSize: context.isPhone ? 25.sp : 7.sp),
           ),
-        )),
-        ResponsiveRowColumnItem(
-            child: SizedBox(
+        ),
+        SizedBox(
           height: context.isPhone ? 5.h : 15.h,
-        )),
-        ResponsiveRowColumnItem(
-            child: Center(
+        ),
+        Center(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.w),
             child: Container(
@@ -52,13 +47,11 @@ class Proceduce extends StatelessWidget {
               ),
             ),
           ),
-        )),
-        ResponsiveRowColumnItem(
-            child: SizedBox(
+        ),
+        SizedBox(
           height: context.isPhone ? 5.h : 15.h,
-        )),
-        ResponsiveRowColumnItem(
-            child: Padding(
+        ),
+        Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.w),
           child: Text(
             'Quy trình làm rèm tại Tân Hoàng Thạch :',
@@ -69,10 +62,9 @@ class Proceduce extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 fontSize: context.isPhone ? 18.sp : 4.sp),
           ),
-        )),
+        ),
         _timeLine(context),
-        ResponsiveRowColumnItem(
-            child: Center(
+        Center(
           child: Padding(
             padding: EdgeInsets.symmetric(
               vertical: context.isPhone ? 5.h : 15.h,
@@ -83,104 +75,74 @@ class Proceduce extends StatelessWidget {
               color: Colors.blue,
             ),
           ),
-        )),
+        ),
       ],
     );
   }
 
-  ResponsiveRowColumnItem _timeLine(BuildContext context) {
-    return ResponsiveRowColumnItem(
-        child: ResponsiveRowColumn(
-      layout: ResponsiveRowColumnType.COLUMN,
-      columnCrossAxisAlignment: CrossAxisAlignment.start,
+  Widget _timeLine(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ResponsiveRowColumnItem(
-          child: TimelineTile(
-            lineXY: 0.1,
-            beforeLineStyle: const LineStyle(thickness: 2, color: Colors.blue),
-            indicatorStyle: IndicatorStyle(
-                indicatorXY: 0.3,
-                width: 20.r,
-                height: 20.r,
-                color: Colors.blue,
-                drawGap: true,
-                indicator: const _Indicator(
-                  number: '1',
-                )),
-            alignment: TimelineAlign.manual,
-            isFirst: true,
-            endChild: const _Step(
-              title: 'Khảo sát nhu cầu:',
-              desc:
-                  'Tìm hiểu nhu cầu của khách hàng qua các kênh của Tân Hoàng Thạch để lựa chọn kiểu rèm, loại vải cho phù hợp',
-            ),
+        TimelineTile(
+          lineXY: 0.1,
+          beforeLineStyle: const LineStyle(thickness: 2, color: Colors.blue),
+          indicatorStyle: _indicatorStyle(context, '1'),
+          alignment: TimelineAlign.manual,
+          isFirst: true,
+          endChild: const _Step(
+            title: 'Khảo sát nhu cầu:',
+            desc:
+                'Tìm hiểu nhu cầu của khách hàng qua các kênh của Tân Hoàng Thạch để lựa chọn kiểu rèm, loại vải cho phù hợp',
           ),
         ),
-        ResponsiveRowColumnItem(
-          child: TimelineTile(
-            lineXY: 0.1,
-            beforeLineStyle: const LineStyle(thickness: 2, color: Colors.blue),
-            indicatorStyle: IndicatorStyle(
-                width: 20.r,
-                indicatorXY: 0.3,
-                height: 20.r,
-                color: Colors.blue,
-                drawGap: true,
-                indicator: const _Indicator(
-                  number: '2',
-                )),
-            alignment: TimelineAlign.manual,
-            endChild: const _Step(
-              title: 'Khảo sát và tư vấn tại nhà:',
-              desc:
-                  'Tân Hoàng Thạch sẽ điều phối nhân viên đến để khảo sát, tư vấn màu vải để phù hợp với tông màu nhà của bạn',
-            ),
+        TimelineTile(
+          lineXY: 0.1,
+          beforeLineStyle: const LineStyle(thickness: 2, color: Colors.blue),
+          indicatorStyle: _indicatorStyle(context, '2'),
+          alignment: TimelineAlign.manual,
+          endChild: const _Step(
+            title: 'Khảo sát và tư vấn tại nhà:',
+            desc:
+                'Tân Hoàng Thạch sẽ điều phối nhân viên đến để khảo sát, tư vấn màu vải để phù hợp với tông màu nhà của bạn',
           ),
         ),
-        ResponsiveRowColumnItem(
-          child: TimelineTile(
-            lineXY: 0.1,
-            beforeLineStyle: const LineStyle(thickness: 2, color: Colors.blue),
-            indicatorStyle: IndicatorStyle(
-                width: 20.r,
-                height: 20.r,
-                indicatorXY: 0.3,
-                color: Colors.blue,
-                drawGap: true,
-                indicator: const _Indicator(
-                  number: '3',
-                )),
-            alignment: TimelineAlign.manual,
-            endChild: const _Step(
-                title: 'Tiến hành báo giá rèm chi tiết và đặt cọc:',
-                desc:
-                    'Xác nhận lại mẫu rèm khách chọn ( màu, số đo,...) để báo giá chính xác giá của sản phẩm'),
-          ),
-        ),
-        ResponsiveRowColumnItem(
-          child: TimelineTile(
-            lineXY: 0.1,
-            isLast: true,
-            beforeLineStyle: const LineStyle(thickness: 2, color: Colors.blue),
-            indicatorStyle: IndicatorStyle(
-                width: 20.r,
-                indicatorXY: 0.3,
-                height: 20.r,
-                color: Colors.blue,
-                drawGap: true,
-                indicator: const _Indicator(
-                  number: '4',
-                )),
-            alignment: TimelineAlign.manual,
-            endChild: const _Step(
-              title: 'Thi công, lắp đặt rèm cửa tại nhà cho khách hàng:',
+        TimelineTile(
+          lineXY: 0.1,
+          beforeLineStyle: const LineStyle(thickness: 2, color: Colors.blue),
+          indicatorStyle: _indicatorStyle(context, '3'),
+          alignment: TimelineAlign.manual,
+          endChild: const _Step(
+              title: 'Tiến hành báo giá rèm chi tiết và đặt cọc:',
               desc:
-                  'Nếu khách hàng chấp nhận báo giá và đặt cọc, Tân Hoàng Thạch sẽ tiến hành may và điều nhân viên đến lắp đặt trong khoảng từ 5-7 ngày',
-            ),
+                  'Xác nhận lại mẫu rèm khách chọn ( màu, số đo,...) để báo giá chính xác giá của sản phẩm'),
+        ),
+        TimelineTile(
+          lineXY: 0.1,
+          isLast: true,
+          beforeLineStyle: const LineStyle(thickness: 2, color: Colors.blue),
+          indicatorStyle: _indicatorStyle(context, '4'),
+          alignment: TimelineAlign.manual,
+          endChild: const _Step(
+            title: 'Thi công, lắp đặt rèm cửa tại nhà cho khách hàng:',
+            desc:
+                'Nếu khách hàng chấp nhận báo giá và đặt cọc, Tân Hoàng Thạch sẽ tiến hành may và điều nhân viên đến lắp đặt trong khoảng từ 5-7 ngày',
           ),
         ),
       ],
-    ));
+    );
+  }
+
+  IndicatorStyle _indicatorStyle(BuildContext context, String number) {
+    return IndicatorStyle(
+        indicatorXY: 0.3,
+        width: context.isPhone ? 40.r : 20.r,
+        height: context.isPhone ? 40.r : 20.r,
+        color: Colors.blue,
+        drawGap: true,
+        indicator: _Indicator(
+          number: number,
+        ));
   }
 }
 
@@ -203,10 +165,9 @@ class _Indicator extends StatelessWidget {
       ),
       child: Center(
         child: Text(number,
-            // style: TextStyle(fontSize: context.isPhone ? 12.sp : 5.sp),
             style: GoogleFonts.lobster(
               color: Colors.blue,
-              fontSize: context.isPhone ? 15.sp : 3.sp,
+              fontSize: context.isPhone ? 12.sp : 3.sp,
             )),
       ),
     );
@@ -247,7 +208,7 @@ class _Step extends StatelessWidget {
                   desc,
                   style: TextStyle(
                     color: Colors.blue.withOpacity(0.8),
-                    fontSize: context.isPhone ? 14.sp : 4.sp,
+                    fontSize: context.isPhone ? 18.sp : 4.sp,
                   ),
                 ),
               ),

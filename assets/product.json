@@ -1,0 +1,134 @@
+[
+    {
+        "name":"Rèm 1 lớp",
+        "stock_price":"700.000 VNĐ",
+        "sale_price":"550.000 VNĐ",
+        "guarantee":"2 năm",
+        "isOutOfStock":false,
+        "unit":"Mét ngang",
+        "material":"100% Polyester",
+        "type":"rem1lop",
+        "images":[
+            "1.jpg",
+            "2.jpg",
+            "3.jpg",
+            "4.jpg",
+            "5.jpg",
+            "6.jpg",
+            "7.jpg",
+            "8.jpg",
+            "9.jpg",
+            "10.jpg"
+        ]
+    },
+    {
+        "name":"Rèm 1 lớp CAO CẤP",
+        "stock_price":"950.000 VNĐ",
+        "sale_price":"850.000 VNĐ",
+        "guarantee":"2 năm",
+        "isOutOfStock":false,
+        "unit":"Mét ngang",
+        "material":"100% Polyester",
+        "type":"rem1lopcaocap",
+        "images":[
+            "1.JPG",
+            "2.JPG",
+            "3.JPG",
+            "4.JPG",
+            "5.JPG",
+            "6.JPG",
+            "7.JPG",
+            "8.JPG",
+            "9.JPG",
+            "10.JPG",
+            "11.JPG",
+            "12.JPG",
+            "13.JPG"
+
+        ]
+    }, {
+        "name":"Rèm 2 lớp (gồm 1 lớp vải trơn và vải voan)",
+        "stock_price":"1050.000 VNĐ",
+        "sale_price":"850.000 VNĐ",
+        "guarantee":"2 năm",
+        "isOutOfStock":false,
+        "unit":"Mét ngang",
+        "material":"100% Polyester",
+        "type":"rem2lop",
+        "images":[
+            "1.jpg",
+            "2.jpg",
+            "3.jpg",
+            "4.jpg",
+            "5.jpg",
+            "6.jpg",
+            "7.jpg",
+            "8.jpg",
+            "9.jpg"
+
+        ]
+    },{
+        "name":"Rèm cuốn",
+        "stock_price":"550.000 VNĐ",
+        "sale_price":"400.000 VNĐ",
+        "guarantee":"1 năm",
+        "isOutOfStock":false,
+        "unit":"m²",
+        "material":"100% Polyester",
+        "type":"remcuon",
+        "images":[
+            "1.jpg",
+            "2.jpg",
+            "3.jpg",
+            "4.jpg",
+            "5.jpg",
+            "6.jpg",
+            "7.jpg",
+            "8.jpg",
+            "9.jpg"
+
+        ]
+    },{
+        "name":"Rèm cầu vồng",
+        "stock_price":"750.000 VNĐ",
+        "sale_price":"550.000 VNĐ",
+        "guarantee":"1 năm",
+        "isOutOfStock":false,
+        "unit":"m²",
+        "material":"100% Polyester",
+        "type":"remcauvong",
+        "images":[
+            "1.jpg",
+            "2.jpg",
+            "3.jpg",
+            "4.jpg",
+            "5.jpg",
+            "6.jpg",
+            "7.jpg",
+            "8.jpg",
+            "9.jpg"
+
+        ]
+    },{
+        "name":"Rèm vải voan",
+        "stock_price":"550.000 VNĐ",
+        "sale_price":"350.000 VNĐ",
+        "guarantee":"1 năm",
+        "isOutOfStock":false,
+        "unit":"Mét ngang",
+        "material":"100% Polyester",
+        "type":"remvaivoan",
+        "images":[
+            "1.jpg",
+            "2.jpg",
+            "3.jpg",
+            "4.jpg",
+            "5.jpg",
+            "6.jpg",
+            "7.jpg",
+            "8.jpg",
+            "9.jpg"
+
+        ]
+    }
+]
