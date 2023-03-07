@@ -24,7 +24,7 @@ class Proceduce extends StatelessWidget {
                 color: Colors.blue,
                 decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold,
-                fontSize: context.isPhone ? 25.sp : 12.sp),
+                fontSize: context.isPhone ? 25.sp : 7.sp),
           ),
         )),
         ResponsiveRowColumnItem(
@@ -46,7 +46,7 @@ class Proceduce extends StatelessWidget {
                   style: TextStyle(
                       color: Colors.white,
                       decoration: TextDecoration.none,
-                      fontSize: context.isPhone ? 18.sp : 10.sp),
+                      fontSize: context.isPhone ? 18.sp : 4.sp),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -67,7 +67,7 @@ class Proceduce extends StatelessWidget {
                 color: AppColor.textGrey,
                 decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold,
-                fontSize: context.isPhone ? 18.sp : 10.sp),
+                fontSize: context.isPhone ? 18.sp : 4.sp),
           ),
         )),
         _timeLine(context),
@@ -100,8 +100,8 @@ class Proceduce extends StatelessWidget {
             beforeLineStyle: const LineStyle(thickness: 2, color: Colors.blue),
             indicatorStyle: IndicatorStyle(
                 indicatorXY: 0.3,
-                width: 20.w,
-                height: 20.w,
+                width: 20.r,
+                height: 20.r,
                 color: Colors.blue,
                 drawGap: true,
                 indicator: const _Indicator(
@@ -121,9 +121,9 @@ class Proceduce extends StatelessWidget {
             lineXY: 0.1,
             beforeLineStyle: const LineStyle(thickness: 2, color: Colors.blue),
             indicatorStyle: IndicatorStyle(
-                width: 20.w,
+                width: 20.r,
                 indicatorXY: 0.3,
-                height: 20.w,
+                height: 20.r,
                 color: Colors.blue,
                 drawGap: true,
                 indicator: const _Indicator(
@@ -142,8 +142,8 @@ class Proceduce extends StatelessWidget {
             lineXY: 0.1,
             beforeLineStyle: const LineStyle(thickness: 2, color: Colors.blue),
             indicatorStyle: IndicatorStyle(
-                width: 20.w,
-                height: 20.w,
+                width: 20.r,
+                height: 20.r,
                 indicatorXY: 0.3,
                 color: Colors.blue,
                 drawGap: true,
@@ -163,9 +163,9 @@ class Proceduce extends StatelessWidget {
             isLast: true,
             beforeLineStyle: const LineStyle(thickness: 2, color: Colors.blue),
             indicatorStyle: IndicatorStyle(
-                width: 20.w,
+                width: 20.r,
                 indicatorXY: 0.3,
-                height: 20.w,
+                height: 20.r,
                 color: Colors.blue,
                 drawGap: true,
                 indicator: const _Indicator(
@@ -197,7 +197,7 @@ class _Indicator extends StatelessWidget {
         border: Border.fromBorderSide(
           BorderSide(
             color: Colors.blue,
-            width: 2.w,
+            width: 2.r,
           ),
         ),
       ),
@@ -206,7 +206,7 @@ class _Indicator extends StatelessWidget {
             // style: TextStyle(fontSize: context.isPhone ? 12.sp : 5.sp),
             style: GoogleFonts.lobster(
               color: Colors.blue,
-              fontSize: context.isPhone ? 15.sp : 6.sp,
+              fontSize: context.isPhone ? 15.sp : 3.sp,
             )),
       ),
     );
@@ -234,7 +234,7 @@ class _Step extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.blue,
                     fontWeight: FontWeight.bold,
-                    fontSize: context.isPhone ? 18.sp : 10.sp,
+                    fontSize: context.isPhone ? 18.sp : 4.sp,
                   ),
                 ),
               ),
@@ -247,7 +247,7 @@ class _Step extends StatelessWidget {
                   desc,
                   style: TextStyle(
                     color: Colors.blue.withOpacity(0.8),
-                    fontSize: context.isPhone ? 14.sp : 8.sp,
+                    fontSize: context.isPhone ? 14.sp : 4.sp,
                   ),
                 ),
               ),

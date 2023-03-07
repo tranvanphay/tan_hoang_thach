@@ -17,7 +17,7 @@ class HeaderDesktop extends StatelessWidget {
                 "Màn rèm cao cấp nhập khẩu",
                 style: TextStyle(
                     color: AppColor.textGrey,
-                    fontSize: 15.spMax,
+                    fontSize: 8.spMax,
                     decoration: TextDecoration.none),
               ),
               const SizedBox(
@@ -27,7 +27,7 @@ class HeaderDesktop extends StatelessWidget {
                 "Tân Hoàng Thạch",
                 style: TextStyle(
                     color: AppColor.textBlue,
-                    fontSize: 18.spMax,
+                    fontSize: 10.spMax,
                     fontWeight: FontWeight.bold,
                     decoration: TextDecoration.none),
               ),
@@ -40,14 +40,14 @@ class HeaderDesktop extends StatelessWidget {
                   style: TextStyle(
                       decoration: TextDecoration.none,
                       fontWeight: FontWeight.bold,
-                      fontSize: 12.sp,
+                      fontSize: 6.sp,
                       color: AppColor.textGrey),
                   children: [
                     TextSpan(
                       text: 'cực hấp dẫn:',
                       style: TextStyle(
                           decoration: TextDecoration.none,
-                          fontSize: 12.sp,
+                          fontSize: 6.sp,
                           color: Colors.black45),
                     ),
                   ],
@@ -84,7 +84,7 @@ class HeaderDesktop extends StatelessWidget {
         Icon(
           Icons.check_circle,
           color: Colors.green,
-          size: 10.w,
+          size: 5.w,
         ),
         SizedBox(
           width: 2.w,
@@ -92,7 +92,7 @@ class HeaderDesktop extends StatelessWidget {
         Text(
           content,
           style: TextStyle(
-              fontSize: 10.sp,
+              fontSize: 5.sp,
               decoration: TextDecoration.none,
               color: Colors.red),
         )

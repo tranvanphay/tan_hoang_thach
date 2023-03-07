@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                           "NHẬN ƯU ĐÃI NGAY",
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: context.isPhone ? 20.sp : 12.sp),
+                              fontSize: context.isPhone ? 20.sp : 6.sp),
                         ),
                       ),
                     ),
@@ -127,7 +127,7 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.blue,
                       decoration: TextDecoration.none,
                       fontWeight: FontWeight.bold,
-                      fontSize: context.isPhone ? 25.sp : 12.sp),
+                      fontSize: context.isPhone ? 25.sp : 7.sp),
                 ),
               )),
               ResponsiveRowColumnItem(
@@ -143,7 +143,7 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(
                         color: AppColor.textGrey,
                         decoration: TextDecoration.none,
-                        fontSize: context.isPhone ? 18.sp : 10.sp),
+                        fontSize: context.isPhone ? 18.sp : 4.sp),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -176,7 +176,7 @@ class _HomePageState extends State<HomePage> {
                         style: TextStyle(
                             color: Colors.white,
                             decoration: TextDecoration.none,
-                            fontSize: context.isPhone ? 18.sp : 10.sp),
+                            fontSize: context.isPhone ? 18.sp : 4.sp),
                         textAlign: TextAlign.center,
                       ),
                     ),

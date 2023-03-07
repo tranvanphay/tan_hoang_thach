@@ -33,7 +33,7 @@ class Benefit extends StatelessWidget {
                 color: Colors.blue,
                 decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold,
-                fontSize: context.isPhone ? 25.sp : 12.sp),
+                fontSize: context.isPhone ? 25.sp : 7.sp),
           ),
         )),
         ResponsiveRowColumnItem(
@@ -75,7 +75,7 @@ class Benefit extends StatelessWidget {
               child: Icon(
                 Icons.check_circle,
                 color: Colors.green,
-                size: context.isPhone ? 18.w : 10.w,
+                size: context.isPhone ? 18.w : 4.w,
               ),
             ),
             ResponsiveRowColumnItem(
@@ -88,7 +88,7 @@ class Benefit extends StatelessWidget {
                 child: Text(
                   content,
                   style: TextStyle(
-                      fontSize: context.isPhone ? 18.sp : 10.sp,
+                      fontSize: context.isPhone ? 18.sp : 4.sp,
                       decoration: TextDecoration.none),
                 ),
               ),
