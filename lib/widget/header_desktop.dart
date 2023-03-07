@@ -28,6 +28,7 @@ class HeaderDesktop extends StatelessWidget {
                 style: TextStyle(
                     color: AppColor.textBlue,
                     fontSize: 18.spMax,
+                    fontWeight: FontWeight.bold,
                     decoration: TextDecoration.none),
               ),
               const SizedBox(
@@ -40,14 +41,14 @@ class HeaderDesktop extends StatelessWidget {
                       decoration: TextDecoration.none,
                       fontWeight: FontWeight.bold,
                       fontSize: 12.sp,
-                      color: Colors.black87),
+                      color: AppColor.textGrey),
                   children: [
                     TextSpan(
                       text: 'cực hấp dẫn:',
                       style: TextStyle(
                           decoration: TextDecoration.none,
                           fontSize: 12.sp,
-                          color: Colors.black87),
+                          color: Colors.black45),
                     ),
                   ],
                 ),
@@ -84,6 +85,9 @@ class HeaderDesktop extends StatelessWidget {
           Icons.check_circle,
           color: Colors.green,
           size: 10.w,
+        ),
+        SizedBox(
+          width: 2.w,
         ),
         Text(
           content,

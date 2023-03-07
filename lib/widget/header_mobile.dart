@@ -32,6 +32,7 @@ class HeaderMobile extends StatelessWidget {
               style: TextStyle(
                   color: AppColor.textBlue,
                   fontSize: 35.spMax,
+                  fontWeight: FontWeight.bold,
                   decoration: TextDecoration.none),
             ),
             const SizedBox(
@@ -51,7 +52,7 @@ class HeaderMobile extends StatelessWidget {
                     style: TextStyle(
                         decoration: TextDecoration.none,
                         fontSize: 20.sp,
-                        color: Colors.black87),
+                        color: AppColor.textGrey),
                   ),
                 ],
               ),
