@@ -136,7 +136,7 @@ class _ProductDesktopState extends State<ProductDesktop> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: (4.5).sp,
+                              fontSize: 4.sp,
                               color: AppColor.textGrey,
                             ),
                           ),
@@ -155,7 +155,7 @@ class _ProductDesktopState extends State<ProductDesktop> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.w900,
-                              fontSize: 5.sp,
+                              fontSize: 4.sp,
                               color: AppColor.textBlue,
                             ),
                           ),
