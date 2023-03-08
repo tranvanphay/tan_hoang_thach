@@ -41,7 +41,7 @@ dependencies:
   url_launcher: ^6.1.10
   timeline_tile: ^2.0.0
   google_fonts: ^2.0.0
-
+  flutter_staggered_grid_view: ^0.4.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -76,6 +76,18 @@ flutter:
     - assets/bg.jpeg
     - assets/bg1.jpeg
     - assets/header_bg.png
+    - assets/product.json
+    - assets/rem1lop/
+    - assets/rem1lopcaocap/
+    - assets/remcauvong/
+    - assets/remcuon/
+    - assets/remdan/
+    - assets/remvaivoan/
+    - assets/rem2lop/
+
+
+
+
 
   #   - images/a_dot_ham.jpeg
 

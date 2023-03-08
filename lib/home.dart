@@ -9,6 +9,7 @@ import 'package:tan_hoang_thach/widget/desktop/about_us_desktop.dart';
 import 'package:tan_hoang_thach/widget/desktop/benefit_desktop.dart';
 import 'package:tan_hoang_thach/widget/desktop/footer_desktop.dart';
 import 'package:tan_hoang_thach/widget/desktop/introduce_desktop.dart';
+import 'package:tan_hoang_thach/widget/desktop/product_desktop.dart';
 import 'package:tan_hoang_thach/widget/mobile/about_us_mobile.dart';
 import 'package:tan_hoang_thach/widget/mobile/benefit_mobile.dart';
 import 'package:tan_hoang_thach/widget/mobile/footer_mobile.dart';
@@ -17,6 +18,8 @@ import 'package:tan_hoang_thach/widget/mobile/header_mobile.dart';
 import 'package:tan_hoang_thach/widget/mobile/introduce_mobile.dart';
 import 'package:tan_hoang_thach/widget/proceduce.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'widget/mobile/product_mobile.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -101,7 +104,8 @@ class _HomePageState extends State<HomePage> {
                               duration: const Duration(seconds: 2));
                         },
                         style: ElevatedButton.styleFrom(
-                            shape: StadiumBorder(), primary: Colors.redAccent),
+                            shape: const StadiumBorder(),
+                            primary: Colors.redAccent),
                         child: Padding(
                           padding: EdgeInsets.all(8.r),
                           child: Text(
@@ -130,8 +134,9 @@ class _HomePageState extends State<HomePage> {
                 ),
               )),
               ResponsiveRowColumnItem(
-                  child:
-                      context.isPhone ? IntroduceMobile() : IntroduceDesktop()),
+                  child: context.isPhone
+                      ? const IntroduceMobile()
+                      : const IntroduceDesktop()),
               ResponsiveRowColumnItem(
                   child: Center(
                 child: Padding(
@@ -146,12 +151,22 @@ class _HomePageState extends State<HomePage> {
                 ),
               )),
               ResponsiveRowColumnItem(
-                  child: context.isPhone ? AboutUsMobile() : AboutUsDesktop()),
+                  child: context.isPhone
+                      ? const AboutUsMobile()
+                      : const AboutUsDesktop()),
               ResponsiveRowColumnItem(
-                  child: context.isPhone ? BenefitMobile() : BenefitDesktop()),
+                  child: context.isPhone
+                      ? const ProductMobile()
+                      : const ProductDesktop()),
+              ResponsiveRowColumnItem(
+                  child: context.isPhone
+                      ? const BenefitMobile()
+                      : const BenefitDesktop()),
               const ResponsiveRowColumnItem(child: Proceduce()),
               ResponsiveRowColumnItem(
-                  child: context.isPhone ? FooterMobile() : FooterDesktop()),
+                  child: context.isPhone
+                      ? const FooterMobile()
+                      : const FooterDesktop()),
             ],
           ),
         ),
