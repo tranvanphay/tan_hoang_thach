@@ -3,7 +3,10 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:tan_hoang_thach/home.dart';
+import 'package:tan_hoang_thach/model/product.dart';
 import 'package:tan_hoang_thach/routes.dart';
+import 'package:tan_hoang_thach/widget/desktop/product_detail_desktop.dart';
+import 'package:tan_hoang_thach/widget/mobile/product_detail_mobile.dart';
 
 void main() {
   runApp(MyApp());
@@ -59,6 +62,16 @@ class MyApp extends StatelessWidget {
               switch (settings.name) {
                 case Routes.home:
                   return const HomePage();
+                case Routes.productDetail:
+                  final args = settings.arguments as Product;
+                  return ProductDetailDesktop(
+                    product: args,
+                  );
+                case Routes.productDetailMob:
+                  final args = settings.arguments as Product;
+                  return ProductDetailMobile(
+                    product: args,
+                  );
                 default:
                   return const SizedBox.shrink();
               }

@@ -48,6 +48,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   FloatingActionButton(
                     elevation: 0,
+                    heroTag: "btn1",
                     backgroundColor: Colors.transparent,
                     foregroundColor: Colors.transparent,
                     onPressed: () {
@@ -69,9 +70,11 @@ class _HomePageState extends State<HomePage> {
                   ),
                   FloatingActionButton(
                     elevation: 0,
+                    heroTag: "btn2",
                     backgroundColor: Colors.transparent,
                     foregroundColor: Colors.transparent,
                     onPressed: () {
+                      //Gọi 2 lần để không bị lỗi trên ip12 ios 16
                       _launchUrl('http://m.me/chiasemoithu.net');
                       _launchUrl('http://m.me/chiasemoithu.net');
                     },
@@ -90,6 +93,7 @@ class _HomePageState extends State<HomePage> {
               ),
               FloatingActionButton(
                 elevation: 0,
+                heroTag: "btn3",
                 backgroundColor: Colors.transparent,
                 foregroundColor: Colors.transparent,
                 onPressed: () {

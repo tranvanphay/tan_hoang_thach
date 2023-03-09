@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 
 class Routes {
   static const String home = "/";
+  static const String productDetail = "/product-detail";
+  static const String productDetailMob = "/product-detailmb";
 
   static Route<T> fadeThrough<T>(RouteSettings settings, WidgetBuilder page,
       {int duration = 300}) {

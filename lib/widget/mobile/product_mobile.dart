@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:tan_hoang_thach/model/product.dart';
+import 'package:tan_hoang_thach/routes.dart';
 import 'package:tan_hoang_thach/utils/colors.dart';
 
 class ProductMobile extends StatefulWidget {
@@ -169,7 +170,8 @@ class _ProductMobileState extends State<ProductMobile> {
         ),
       ),
       onTap: () {
-        EasyLoading.showToast('Đang làm...');
+        Navigator.pushNamed(context, Routes.productDetailMob,
+            arguments: product);
       },
     );
   }

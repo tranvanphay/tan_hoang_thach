@@ -7,7 +7,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:tan_hoang_thach/model/product.dart';
+import 'package:tan_hoang_thach/routes.dart';
 import 'package:tan_hoang_thach/utils/colors.dart';
+import 'package:tan_hoang_thach/widget/desktop/product_detail_desktop.dart';
 
 class ProductDesktop extends StatefulWidget {
   const ProductDesktop({Key? key}) : super(key: key);
@@ -170,7 +172,7 @@ class _ProductDesktopState extends State<ProductDesktop> {
         ),
       ),
       onTap: () {
-        EasyLoading.showToast('Đang làm...');
+        Navigator.pushNamed(context, Routes.productDetail, arguments: product);
       },
     );
   }
