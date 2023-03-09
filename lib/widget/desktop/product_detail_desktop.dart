@@ -3,87 +3,134 @@ import 'dart:convert';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:tan_hoang_thach/model/product.dart';
+import 'package:tan_hoang_thach/routes.dart';
 import 'package:tan_hoang_thach/utils/colors.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../floating_action_button.dart';
 
 class ProductDetailDesktop extends StatefulWidget {
-  Product product;
-  ProductDetailDesktop({Key? key, required this.product});
+  String productId;
+  ProductDetailDesktop({Key? key, required this.productId});
 
   @override
   State<ProductDetailDesktop> createState() => _ProductDetailDesktopState();
 }
 
 class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColor.appBg,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: const FloatingAction(),
-      body: SingleChildScrollView(
-          padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 30.h),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Card(
-                elevation: 5,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
-                child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 10.r, vertical: 10.r),
-                  child: Row(
-                    children: [
-                      Expanded(flex: 3, child: _photoView(widget.product)),
-                      Expanded(flex: 2, child: _info(widget.product))
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Text(
-                'Sản phẩm liên quan',
-                style: TextStyle(
-                    color: Colors.blue,
-                    decoration: TextDecoration.none,
-                    fontWeight: FontWeight.bold,
-                    fontSize: context.isPhone ? 25.sp : 7.sp),
-              ),
-              SizedBox(
-                height: 5.h,
-              ),
-              Card(
-                elevation: 5,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
-                child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 10.r, vertical: 10.r),
-                  child: _relatedProducts(widget.product.type),
-                ),
-              ),
-            ],
-          )),
+  final ScrollController _controller = ScrollController();
+  Product? _product;
+  void _scrollToTop() {
+    _controller.animateTo(
+      _controller.position.minScrollExtent,
+      duration: const Duration(seconds: 1),
+      curve: Curves.fastOutSlowIn,
     );
   }
 
-  Widget _info(Product product) {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: AppColor.appBg,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: const FloatingAction(),
+        body: FutureBuilder<Product>(
+          future: _getProductById(),
+          builder: (context, snapshoot) {
+            if (snapshoot.hasData) {
+              _product = snapshoot.data;
+              return SingleChildScrollView(
+                  controller: _controller,
+                  padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 30.h),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Card(
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10.r, vertical: 10.r),
+                          child: Row(
+                            children: [
+                              Expanded(flex: 3, child: _photoView(_product)),
+                              Expanded(flex: 2, child: _info(_product))
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      Text(
+                        'Sản phẩm liên quan',
+                        style: TextStyle(
+                            color: Colors.blue,
+                            decoration: TextDecoration.none,
+                            fontWeight: FontWeight.bold,
+                            fontSize: context.isPhone ? 25.sp : 7.sp),
+                      ),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      Card(
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10.r, vertical: 10.r),
+                          child: _relatedProducts(_product?.type),
+                        ),
+                      ),
+                    ],
+                  ));
+            } else if (snapshoot.hasError) {
+              return Center(
+                child: InkWell(
+                  onTap: () {
+                    _launchUrl('https://tanhoangthach-curtain.web.app/');
+                  },
+                  child: Card(
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                      child: Image.asset(
+                        'assets/logo.png',
+                        width: 100.w,
+                      )),
+                ),
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
+        ));
+  }
+
+  Widget _info(Product? product) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(
-          product.name ?? '',
+          product?.name ?? '',
           style: TextStyle(
               fontSize: 7.sp,
               color: AppColor.textBlue,
@@ -93,7 +140,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
           height: 10.h,
         ),
         Text(
-          'Đã bán: ${product.sold}',
+          'Đã bán: ${product?.sold}',
           style: TextStyle(fontSize: 5.sp),
         ),
         Divider(
@@ -105,7 +152,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '${product.stockPrice}',
+              '${product?.stockPrice}',
               style: TextStyle(
                   color: AppColor.textGrey,
                   fontSize: 5.sp,
@@ -115,7 +162,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
               width: 5.w,
             ),
             Text(
-              '${product.salePrice}',
+              '${product?.salePrice}',
               style: TextStyle(
                   color: Colors.red,
                   fontSize: 7.sp,
@@ -161,7 +208,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
             ),
             Expanded(
               child: Text(
-                product.unit ?? '',
+                product?.unit ?? '',
                 style: TextStyle(fontSize: 5.sp),
               ),
             ),
@@ -179,7 +226,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
             ),
             Expanded(
               child: Text(
-                product.guarantee ?? '',
+                product?.guarantee ?? '',
                 style: TextStyle(fontSize: 5.sp),
               ),
             ),
@@ -215,7 +262,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
             ),
             Expanded(
               child: Text(
-                product.material ?? '',
+                product?.material ?? '',
                 style: TextStyle(fontSize: 5.sp),
               ),
             ),
@@ -233,7 +280,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
             ),
             Expanded(
               child: Text(
-                product.isOutOfStock == true ? "Hết hàng" : "Còn hàng",
+                product?.isOutOfStock == true ? "Hết hàng" : "Còn hàng",
                 style: TextStyle(fontSize: 5.sp),
               ),
             ),
@@ -243,13 +290,13 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
     );
   }
 
-  Widget _photoView(Product product) {
+  Widget _photoView(Product? product) {
     return Column(
       children: [
         CarouselSlider(
-            items: product.images!
+            items: (product?.images ?? [])
                 .map((image) => Image.asset(
-                      'assets/${product.type}/$image',
+                      'assets/${product?.type}/$image',
                       width: double.infinity,
                     ))
                 .toList(),
@@ -276,9 +323,9 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
             crossAxisCount: 5,
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: product.images!.length,
+            itemCount: product?.images?.length,
             itemBuilder: (buildContext, index) {
-              return _itemAssets(product.images![index], product.type!);
+              return _itemAssets(product?.images?[index], product?.type);
             },
             staggeredTileBuilder: (int index) {
               return const StaggeredTile.fit(1);
@@ -294,7 +341,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
     );
   }
 
-  Widget _itemAssets(String assets, String type) {
+  Widget _itemAssets(String? assets, String? type) {
     return InkWell(
       onTap: () {
         _showDialogPhoto('assets/$type/$assets');
@@ -442,8 +489,8 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
         ),
       ),
       onTap: () {
-        widget.product = product;
-        setState(() {});
+        Navigator.pushReplacementNamed(
+            context, '${Routes.productDetail}?type=${product.type}');
       },
     );
   }
@@ -463,5 +510,27 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
 
   String _getImage(Product product) {
     return 'assets/${product.type}/${product.images![0]}';
+  }
+
+  Future<Product> _getProductById() async {
+    final listData = await _readJson();
+    return listData.where((element) => element.type == widget.productId).first;
+  }
+
+  _launchUrl(String url) async {
+    EasyLoading.show();
+    final uri = Uri.parse(
+      url,
+    );
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri,
+              mode: LaunchMode.platformDefault, webOnlyWindowName: '_self')
+          .then((value) {
+        EasyLoading.dismiss();
+      });
+    } else {
+      EasyLoading.dismiss();
+      throw 'Could not launch $url';
+    }
   }
 }

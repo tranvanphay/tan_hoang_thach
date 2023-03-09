@@ -75,6 +75,7 @@ flutter:
     - assets/desktop/
     - assets/bg.jpeg
     - assets/bg1.jpeg
+    - assets/logo.png
     - assets/header_bg.png
     - assets/product.json
     - assets/rem1lop/

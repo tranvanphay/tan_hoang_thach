@@ -169,8 +169,8 @@ class _ProductMobileState extends State<ProductMobile> {
         ),
       ),
       onTap: () {
-        Navigator.pushNamed(context, Routes.productDetailMob,
-            arguments: product);
+        Navigator.pushNamed(
+            context, "${Routes.productDetailMob}?type=${product.type}");
       },
     );
   }
