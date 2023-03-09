@@ -36,27 +36,57 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
+          padding: EdgeInsets.symmetric(
+              horizontal: context.isPhone ? 20.w : 8.w,
+              vertical: context.isPhone ? 16.h : 25.h),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              FloatingActionButton(
-                elevation: 0,
-                backgroundColor: Colors.transparent,
-                foregroundColor: Colors.transparent,
-                onPressed: () {
-                  EasyLoading.showToast("Éo có gì đâu");
-                },
-                child: ShakeWidget(
-                    duration: const Duration(seconds: 3),
-                    shakeConstant: ShakeDefaultConstant2(),
-                    autoPlay: true,
-                    enableWebMouseHover: true,
-                    child: SvgPicture.asset(
-                      'assets/icon/ic_messenger.svg',
-                      semanticsLabel: 'Messenger',
-                      width: context.isPhone ? 96.r : 48.r,
-                    )),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  FloatingActionButton(
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    foregroundColor: Colors.transparent,
+                    onPressed: () {
+                      _launchUrl('http://zalo.me/0369391202');
+                    },
+                    child: ShakeWidget(
+                        duration: const Duration(seconds: 3),
+                        shakeConstant: ShakeDefaultConstant2(),
+                        autoPlay: true,
+                        enableWebMouseHover: true,
+                        child: SvgPicture.asset(
+                          'assets/icon/ic_zalo.svg',
+                          semanticsLabel: 'Zalo',
+                          width: context.isPhone ? 96.r : 48.r,
+                        )),
+                  ),
+                  SizedBox(
+                    height: context.isPhone ? 10.h : 20.h,
+                  ),
+                  FloatingActionButton(
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    foregroundColor: Colors.transparent,
+                    onPressed: () {
+                      _launchUrl('http://m.me/chiasemoithu.net');
+                      _launchUrl('http://m.me/chiasemoithu.net');
+                    },
+                    child: ShakeWidget(
+                        duration: const Duration(seconds: 3),
+                        shakeConstant: ShakeDefaultConstant2(),
+                        autoPlay: true,
+                        enableWebMouseHover: true,
+                        child: SvgPicture.asset(
+                          'assets/icon/ic_messenger.svg',
+                          semanticsLabel: 'Messenger',
+                          width: context.isPhone ? 96.r : 48.r,
+                        )),
+                  ),
+                ],
               ),
               FloatingActionButton(
                 elevation: 0,
@@ -73,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                   child: Icon(
                     Icons.phonelink_ring_outlined,
                     color: Colors.blue,
-                    size: context.isPhone ? 56.r : 48.r,
+                    size: context.isPhone ? 40.r : 48.r,
                   ),
                 ),
               )
@@ -100,8 +130,7 @@ class _HomePageState extends State<HomePage> {
                       enableWebMouseHover: true,
                       child: ElevatedButton(
                         onPressed: () {
-                          EasyLoading.showToast("Bấm cc..., đang làm",
-                              duration: const Duration(seconds: 2));
+                          _launchUrl('https://facebook.com/chiasemoithu.net');
                         },
                         style: ElevatedButton.styleFrom(
                             shape: const StadiumBorder(),
@@ -180,5 +209,22 @@ class _HomePageState extends State<HomePage> {
       path: phoneNumber,
     );
     await launchUrl(launchUri);
+  }
+
+  _launchUrl(String url) async {
+    EasyLoading.show();
+    final uri = Uri.parse(
+      url,
+    );
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri,
+              mode: LaunchMode.platformDefault, webOnlyWindowName: '_blank')
+          .then((value) {
+        EasyLoading.dismiss();
+      });
+    } else {
+      EasyLoading.dismiss();
+      throw 'Could not launch $url';
+    }
   }
 }
