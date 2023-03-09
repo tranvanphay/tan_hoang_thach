@@ -9,7 +9,6 @@ import 'package:get/get.dart';
 import 'package:tan_hoang_thach/model/product.dart';
 import 'package:tan_hoang_thach/routes.dart';
 import 'package:tan_hoang_thach/utils/colors.dart';
-import 'package:tan_hoang_thach/widget/desktop/product_detail_desktop.dart';
 
 class ProductDesktop extends StatefulWidget {
   const ProductDesktop({Key? key}) : super(key: key);

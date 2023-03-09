@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_shake_animated/flutter_shake_animated.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:nice_ripple/nice_ripple.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:tan_hoang_thach/utils/colors.dart';
 import 'package:tan_hoang_thach/widget/desktop/about_us_desktop.dart';
 import 'package:tan_hoang_thach/widget/desktop/benefit_desktop.dart';
 import 'package:tan_hoang_thach/widget/desktop/footer_desktop.dart';
 import 'package:tan_hoang_thach/widget/desktop/introduce_desktop.dart';
 import 'package:tan_hoang_thach/widget/desktop/product_desktop.dart';
+import 'package:tan_hoang_thach/widget/floating_action_button.dart';
 import 'package:tan_hoang_thach/widget/mobile/about_us_mobile.dart';
 import 'package:tan_hoang_thach/widget/mobile/benefit_mobile.dart';
 import 'package:tan_hoang_thach/widget/mobile/footer_mobile.dart';
@@ -33,87 +35,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColor.appBg,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: context.isPhone ? 20.w : 8.w,
-              vertical: context.isPhone ? 16.h : 25.h),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  FloatingActionButton(
-                    elevation: 0,
-                    heroTag: "btn1",
-                    backgroundColor: Colors.transparent,
-                    foregroundColor: Colors.transparent,
-                    onPressed: () {
-                      _launchUrl('http://zalo.me/0369391202');
-                    },
-                    child: ShakeWidget(
-                        duration: const Duration(seconds: 3),
-                        shakeConstant: ShakeDefaultConstant2(),
-                        autoPlay: true,
-                        enableWebMouseHover: true,
-                        child: SvgPicture.asset(
-                          'assets/icon/ic_zalo.svg',
-                          semanticsLabel: 'Zalo',
-                          width: context.isPhone ? 96.r : 48.r,
-                        )),
-                  ),
-                  SizedBox(
-                    height: context.isPhone ? 10.h : 20.h,
-                  ),
-                  FloatingActionButton(
-                    elevation: 0,
-                    heroTag: "btn2",
-                    backgroundColor: Colors.transparent,
-                    foregroundColor: Colors.transparent,
-                    onPressed: () {
-                      //Gọi 2 lần để không bị lỗi trên ip12 ios 16
-                      _launchUrl('http://m.me/chiasemoithu.net');
-                      _launchUrl('http://m.me/chiasemoithu.net');
-                    },
-                    child: ShakeWidget(
-                        duration: const Duration(seconds: 3),
-                        shakeConstant: ShakeDefaultConstant2(),
-                        autoPlay: true,
-                        enableWebMouseHover: true,
-                        child: SvgPicture.asset(
-                          'assets/icon/ic_messenger.svg',
-                          semanticsLabel: 'Messenger',
-                          width: context.isPhone ? 96.r : 48.r,
-                        )),
-                  ),
-                ],
-              ),
-              FloatingActionButton(
-                elevation: 0,
-                heroTag: "btn3",
-                backgroundColor: Colors.transparent,
-                foregroundColor: Colors.transparent,
-                onPressed: () {
-                  _makePhoneCall('0369391202');
-                },
-                child: ShakeWidget(
-                  duration: const Duration(seconds: 3),
-                  shakeConstant: ShakeDefaultConstant2(),
-                  autoPlay: true,
-                  enableWebMouseHover: true,
-                  child: Icon(
-                    Icons.phonelink_ring_outlined,
-                    color: Colors.blue,
-                    size: context.isPhone ? 40.r : 48.r,
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
+        floatingActionButton: const FloatingAction(),
         body: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: context.isPhone ? 0 : 50.w),
           child: ResponsiveRowColumn(
@@ -124,14 +48,12 @@ class _HomePageState extends State<HomePage> {
                   ? ResponsiveRowColumnItem(child: HeaderMobile())
                   : ResponsiveRowColumnItem(child: HeaderDesktop()),
               ResponsiveRowColumnItem(
-                child: Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(5.h),
-                    child: ShakeWidget(
-                      duration: const Duration(seconds: 3),
-                      shakeConstant: ShakeDefaultConstant2(),
-                      autoPlay: true,
-                      enableWebMouseHover: true,
+                child: Container(
+                  width: double.infinity,
+                  height: context.isPhone ? 70.h : 100.h,
+                  child: Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(5.h),
                       child: ElevatedButton(
                         onPressed: () {
                           _launchUrl('https://facebook.com/chiasemoithu.net');
@@ -205,14 +127,6 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-  }
-
-  Future<void> _makePhoneCall(String phoneNumber) async {
-    final Uri launchUri = Uri(
-      scheme: 'tel',
-      path: phoneNumber,
-    );
-    await launchUrl(launchUri);
   }
 
   _launchUrl(String url) async {

@@ -1,14 +1,18 @@
+import 'dart:convert';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:photo_view/photo_view.dart';
-import 'package:photo_view/photo_view_gallery.dart';
+import 'package:get/get.dart';
 import 'package:tan_hoang_thach/model/product.dart';
 import 'package:tan_hoang_thach/utils/colors.dart';
 
+import '../floating_action_button.dart';
+
 class ProductDetailDesktop extends StatefulWidget {
-  final Product product;
+  Product product;
   ProductDetailDesktop({Key? key, required this.product});
 
   @override
@@ -20,6 +24,8 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.appBg,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: const FloatingAction(),
       body: SingleChildScrollView(
           padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 30.h),
           child: Column(
@@ -40,7 +46,32 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
                     ],
                   ),
                 ),
-              )
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Text(
+                'Sản phẩm liên quan',
+                style: TextStyle(
+                    color: Colors.blue,
+                    decoration: TextDecoration.none,
+                    fontWeight: FontWeight.bold,
+                    fontSize: context.isPhone ? 25.sp : 7.sp),
+              ),
+              SizedBox(
+                height: 5.h,
+              ),
+              Card(
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 10.r, vertical: 10.r),
+                  child: _relatedProducts(widget.product.type),
+                ),
+              ),
             ],
           )),
     );
@@ -102,9 +133,10 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
               'Vận chuyển: ',
               style: TextStyle(color: AppColor.textGrey, fontSize: 5.sp),
             ),
-            const Icon(
+            Icon(
               Icons.delivery_dining_outlined,
               color: Colors.blue,
+              size: 30.r,
             ),
             SizedBox(
               width: 5.w,
@@ -206,7 +238,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
               ),
             ),
           ],
-        )
+        ),
       ],
     );
   }
@@ -256,7 +288,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
         ),
         Text(
           "(Nhấn vào ảnh để phóng to)",
-          style: TextStyle(fontStyle: FontStyle.italic, fontSize: 5.sp),
+          style: TextStyle(fontStyle: FontStyle.italic, fontSize: 3.sp),
         )
       ],
     );
@@ -281,6 +313,8 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
         context: context,
         builder: (context) {
           return AlertDialog(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
                 Radius.circular(
@@ -294,5 +328,140 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
             content: Image.asset(url),
           );
         });
+  }
+
+  Widget _relatedProducts(String? type) {
+    return FutureBuilder<List<Product>>(
+        future: _getListRelated(type),
+        builder: ((context, snapshot) {
+          if (snapshot.hasData) {
+            return StaggeredGridView.countBuilder(
+              crossAxisCount: 3,
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: snapshot.data?.length ?? 0,
+              itemBuilder: (buildContext, index) {
+                if (snapshot.data != null) {
+                  Product product = snapshot.data![index];
+                  return _buildGridItem(product);
+                } else {
+                  return Container();
+                }
+              },
+              staggeredTileBuilder: (int index) {
+                return const StaggeredTile.fit(1);
+              },
+              mainAxisSpacing: 6.w,
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        }));
+  }
+
+  Widget _buildGridItem(Product product) {
+    return InkWell(
+      child: Card(
+        elevation: 5,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        child: SizedBox(
+          height: 280.h,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 200.h,
+                child: Image.asset(_getImage(product)),
+              ),
+              SizedBox(
+                height: 80.h,
+                child: Stack(
+                  fit: StackFit.loose,
+                  children: [
+                    Positioned(
+                        right: 0,
+                        bottom: 0,
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 1.w),
+                          child: Text(
+                            product.isOutOfStock == true
+                                ? '(Hết hàng) '
+                                : '(Còn hàng) ',
+                            style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                color: product.isOutOfStock == true
+                                    ? Colors.redAccent
+                                    : null),
+                          ),
+                        )),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            product.name ?? '',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 4.sp,
+                              color: AppColor.textGrey,
+                            ),
+                          ),
+                          Text(
+                            'Giá gốc: ${product.stockPrice}',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              decoration: TextDecoration.lineThrough,
+                              fontWeight: FontWeight.w700,
+                              fontSize: (3.5).sp,
+                              color: AppColor.textGrey,
+                            ),
+                          ),
+                          Text(
+                            'Giá mới: ${product.salePrice}',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 4.sp,
+                              color: AppColor.textBlue,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      onTap: () {
+        widget.product = product;
+        setState(() {});
+      },
+    );
+  }
+
+  Future<List<Product>> _getListRelated(String? type) async {
+    final listProduct = await _readJson();
+    listProduct.removeWhere((element) => element.type == type);
+    return listProduct;
+  }
+
+  Future<List<Product>> _readJson() async {
+    final String response = await rootBundle.loadString('assets/product.json');
+    List<dynamic> data = jsonDecode(response);
+    return List<Product>.from(
+        data.map<Product>((dynamic i) => Product.fromJson(i)));
+  }
+
+  String _getImage(Product product) {
+    return 'assets/${product.type}/${product.images![0]}';
   }
 }

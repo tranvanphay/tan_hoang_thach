@@ -38,15 +38,24 @@ class BenefitDesktop extends StatelessWidget {
           height: context.isPhone ? 5.h : 15.h,
         ),
         Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
                 child: Column(
               children: [
                 _benefitItem(context,
                     'Tính thẩm mĩ cao, giúp không gian nhà bạn sang trọng hơn'),
+                SizedBox(
+                  height: 10.h,
+                ),
                 _benefitItem(context, 'Cản nắng gió và cách nhiệt rất tốt'),
+                SizedBox(
+                  height: 10.h,
+                ),
                 _benefitItem(context, 'Dễ dàng tháo lắp và vệ sinh'),
+                SizedBox(
+                  height: 10.h,
+                ),
                 _benefitItem(context, 'Tiện lợi, thông minh, không lỗi thời'),
               ],
             )),
@@ -85,7 +94,7 @@ class BenefitDesktop extends StatelessWidget {
               child: Icon(
                 Icons.check_circle,
                 color: Colors.green,
-                size: context.isPhone ? 18.w : 4.w,
+                size: 18.r,
               ),
             ),
             ResponsiveRowColumnItem(

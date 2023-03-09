@@ -33,6 +33,9 @@ class AboutUsDesktop extends StatelessWidget {
               'assets/desktop/worker.jpg',
               height: 300.h,
             )),
+            SizedBox(
+              width: 10.r,
+            ),
             Expanded(
               child: Text(
                 'Tân Hoàng Thạch chuyên thi công, thiết kế màn rèm cho nhà ở, văn phòng, chung cư hay địa điểm kinh doanh với mẫu mã đa dạng, độ thẩm mĩ cao phù hợp với mọi không gian. Sản phẩm của chúng tôi mang độ bền cao, dễ dàng tháo - lắp, vệ sinh.',

@@ -1,12 +1,18 @@
+import 'dart:convert';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:get/get.dart';
+
 import 'package:tan_hoang_thach/model/product.dart';
 import 'package:tan_hoang_thach/utils/colors.dart';
+import 'package:tan_hoang_thach/widget/floating_action_button.dart';
 
 class ProductDetailMobile extends StatefulWidget {
-  final Product product;
+  Product product;
   ProductDetailMobile({Key? key, required this.product});
 
   @override
@@ -14,12 +20,24 @@ class ProductDetailMobile extends StatefulWidget {
 }
 
 class _ProductDetailMobileState extends State<ProductDetailMobile> {
+  final ScrollController _controller = ScrollController();
+  void _scrollToTop() {
+    _controller.animateTo(
+      _controller.position.minScrollExtent,
+      duration: const Duration(seconds: 1),
+      curve: Curves.fastOutSlowIn,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.appBg,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: const FloatingAction(),
       body: SingleChildScrollView(
-          padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 30.h),
+          controller: _controller,
+          padding: EdgeInsets.only(left: 10.w, right: 10.w, top: 8.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -38,7 +56,32 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                     ],
                   ),
                 ),
-              )
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Text(
+                'Sản phẩm liên quan',
+                style: TextStyle(
+                    color: Colors.blue,
+                    decoration: TextDecoration.none,
+                    fontWeight: FontWeight.bold,
+                    fontSize: context.isPhone ? 25.sp : 7.sp),
+              ),
+              SizedBox(
+                height: 5.h,
+              ),
+              Card(
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 10.r, vertical: 10.r),
+                  child: _relatedProducts(widget.product.type),
+                ),
+              ),
             ],
           )),
     );
@@ -61,7 +104,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
         ),
         Text(
           'Đã bán: ${product.sold}',
-          style: TextStyle(fontSize: 12.sp),
+          style: TextStyle(fontSize: 15.sp),
         ),
         Divider(
           color: AppColor.textBlue,
@@ -75,7 +118,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
               '${product.stockPrice}',
               style: TextStyle(
                   color: AppColor.textGrey,
-                  fontSize: 15.sp,
+                  fontSize: 18.sp,
                   decoration: TextDecoration.lineThrough),
             ),
             SizedBox(
@@ -98,7 +141,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
           children: [
             Text(
               'Vận chuyển: ',
-              style: TextStyle(color: AppColor.textGrey, fontSize: 15.sp),
+              style: TextStyle(color: AppColor.textGrey, fontSize: 18.sp),
             ),
             const Icon(
               Icons.delivery_dining_outlined,
@@ -110,7 +153,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
             Expanded(
               child: Text(
                 'Miễn phí vận chuyển và lắp ráp',
-                style: TextStyle(fontSize: 15.sp),
+                style: TextStyle(fontSize: 18.sp),
               ),
             ),
           ],
@@ -123,12 +166,12 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
           children: [
             Text(
               'Đơn vị: ',
-              style: TextStyle(color: AppColor.textGrey, fontSize: 15.sp),
+              style: TextStyle(color: AppColor.textGrey, fontSize: 18.sp),
             ),
             Expanded(
               child: Text(
                 product.unit ?? '',
-                style: TextStyle(fontSize: 15.sp),
+                style: TextStyle(fontSize: 18.sp),
               ),
             ),
           ],
@@ -141,12 +184,12 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
           children: [
             Text(
               'Bảo hành: ',
-              style: TextStyle(color: AppColor.textGrey, fontSize: 15.sp),
+              style: TextStyle(color: AppColor.textGrey, fontSize: 18.sp),
             ),
             Expanded(
               child: Text(
                 product.guarantee ?? '',
-                style: TextStyle(fontSize: 15.sp),
+                style: TextStyle(fontSize: 18.sp),
               ),
             ),
           ],
@@ -159,12 +202,12 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
           children: [
             Text(
               'Màu sắc: ',
-              style: TextStyle(color: AppColor.textGrey, fontSize: 15.sp),
+              style: TextStyle(color: AppColor.textGrey, fontSize: 18.sp),
             ),
             Expanded(
               child: Text(
                 'Liên hệ để được tư vấn và xem hình ảnh thực tế',
-                style: TextStyle(fontSize: 15.sp),
+                style: TextStyle(fontSize: 18.sp),
               ),
             ),
           ],
@@ -177,12 +220,12 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
           children: [
             Text(
               'Chất liệu: ',
-              style: TextStyle(color: AppColor.textGrey, fontSize: 15.sp),
+              style: TextStyle(color: AppColor.textGrey, fontSize: 18.sp),
             ),
             Expanded(
               child: Text(
                 product.material ?? '',
-                style: TextStyle(fontSize: 15.sp),
+                style: TextStyle(fontSize: 18.sp),
               ),
             ),
           ],
@@ -195,12 +238,12 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
           children: [
             Text(
               'Tình trạng: ',
-              style: TextStyle(color: AppColor.textGrey, fontSize: 15.sp),
+              style: TextStyle(color: AppColor.textGrey, fontSize: 18.sp),
             ),
             Expanded(
               child: Text(
                 product.isOutOfStock == true ? "Hết hàng" : "Còn hàng",
-                style: TextStyle(fontSize: 15.sp),
+                style: TextStyle(fontSize: 18.sp),
               ),
             ),
           ],
@@ -220,7 +263,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                     ))
                 .toList(),
             options: CarouselOptions(
-              height: 300.h,
+              height: 350.h,
               viewportFraction: 0.8,
               initialPage: 0,
               enableInfiniteScroll: true,
@@ -234,12 +277,12 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
               scrollDirection: Axis.horizontal,
             )),
         SizedBox(
-          height: 30.h,
+          height: 20.h,
         ),
-        SizedBox(
-          width: 250.r,
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.w),
           child: StaggeredGridView.countBuilder(
-            crossAxisCount: 3,
+            crossAxisCount: 4,
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: product.images!.length,
@@ -267,8 +310,8 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
       },
       child: Image.asset(
         'assets/$type/$assets',
-        width: 64.r,
-        height: 64.r,
+        width: 80.w,
+        height: 80.w,
         fit: BoxFit.contain,
       ),
     );
@@ -279,6 +322,8 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
         context: context,
         builder: (context) {
           return AlertDialog(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
                 Radius.circular(
@@ -292,5 +337,143 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
             content: Image.asset(url),
           );
         });
+  }
+
+  Widget _relatedProducts(String? type) {
+    return FutureBuilder<List<Product>>(
+        future: _getListRelated(type),
+        builder: ((context, snapshot) {
+          if (snapshot.hasData) {
+            return StaggeredGridView.countBuilder(
+              physics: const NeverScrollableScrollPhysics(),
+              crossAxisCount: 1,
+              shrinkWrap: true,
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
+              itemCount: snapshot.data?.length ?? 0,
+              itemBuilder: (buildContext, index) {
+                if (snapshot.data != null) {
+                  Product product = snapshot.data![index];
+                  return _buildGridItem(product);
+                } else {
+                  return Container();
+                }
+              },
+              staggeredTileBuilder: (int index) {
+                return const StaggeredTile.fit(1);
+              },
+              mainAxisSpacing: 6.w,
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        }));
+  }
+
+  Widget _buildGridItem(Product product) {
+    return InkWell(
+      child: Card(
+        elevation: 5,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        child: SizedBox(
+          height: 350.h,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 270.h,
+                child: Image.asset(_getImage(product)),
+              ),
+              SizedBox(
+                height: 80.h,
+                width: double.infinity,
+                child: Stack(
+                  fit: StackFit.loose,
+                  children: [
+                    Positioned(
+                        right: 0,
+                        bottom: 0,
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 3.w),
+                          child: Text(
+                            product.isOutOfStock == true
+                                ? '(Hết hàng) '
+                                : '(Còn hàng) ',
+                            style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                color: product.isOutOfStock == true
+                                    ? Colors.redAccent
+                                    : null),
+                          ),
+                        )),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            product.name ?? '',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 18.sp,
+                              color: AppColor.textGrey,
+                            ),
+                          ),
+                          Text(
+                            'Giá gốc: ${product.stockPrice}',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              decoration: TextDecoration.lineThrough,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 12.sp,
+                              color: AppColor.textGrey,
+                            ),
+                          ),
+                          Text(
+                            'Giá mới: ${product.salePrice}',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 18.sp,
+                              color: AppColor.textBlue,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      onTap: () {
+        widget.product = product;
+        setState(() {});
+        _scrollToTop();
+      },
+    );
+  }
+
+  Future<List<Product>> _getListRelated(String? type) async {
+    final listProduct = await _readJson();
+    listProduct.removeWhere((element) => element.type == type);
+    return listProduct;
+  }
+
+  Future<List<Product>> _readJson() async {
+    final String response = await rootBundle.loadString('assets/product.json');
+    List<dynamic> data = jsonDecode(response);
+    return List<Product>.from(
+        data.map<Product>((dynamic i) => Product.fromJson(i)));
+  }
+
+  String _getImage(Product product) {
+    return 'assets/${product.type}/${product.images![0]}';
   }
 }
