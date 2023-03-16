@@ -56,10 +56,10 @@ class FloatingAction extends StatelessWidget {
                   onPressed: () {
                     //Gọi 2 lần để không bị lỗi trên ip12 ios 16
                     if (context.isPhone) {
-                      _launchUrl('http://m.me/chiasemoithu.net');
-                      _launchUrl('http://m.me/chiasemoithu.net');
+                      _launchUrl('http://m.me/tanhoangthach.pro');
+                      _launchUrl('http://m.me/tanhoangthach.pro');
                     } else {
-                      _launchUrl('http://m.me/chiasemoithu.net');
+                      _launchUrl('http://m.me/tanhoangthach.pro');
                     }
                   },
                   child: NiceRipple(
