@@ -12,6 +12,7 @@ import 'package:tan_hoang_thach/model/product.dart';
 import 'package:tan_hoang_thach/routes.dart';
 import 'package:tan_hoang_thach/utils/colors.dart';
 import 'package:tan_hoang_thach/utils/files.dart';
+import 'package:tan_hoang_thach/utils/images.dart';
 import 'package:tan_hoang_thach/widget/floating_action_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -75,7 +76,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                           height: 20.h,
                         ),
                         Text(
-                          'Sản phẩm liên quan',
+                          AppString.productRef,
                           style: TextStyle(
                               color: Colors.blue,
                               decoration: TextDecoration.none,
@@ -102,7 +103,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                 return Center(
                   child: InkWell(
                     onTap: () {
-                      _launchUrl('https://tanhoangthach-curtain.web.app/');
+                      _launchUrl(AppString.rootAddress);
                     },
                     child: Card(
                         elevation: 5,
@@ -110,7 +111,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                           borderRadius: BorderRadius.circular(5.0),
                         ),
                         child: Image.asset(
-                          'assets/logo.png',
+                          AppImage.appIcon,
                           width: 100.w,
                         )),
                   ),
@@ -141,7 +142,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
           height: 10.h,
         ),
         Text(
-          'Đã bán: ${product?.sold}',
+          '${AppString.daBan}${product?.sold}',
           style: TextStyle(fontSize: 15.sp),
         ),
         Divider(
@@ -178,7 +179,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Vận chuyển: ',
+              AppString.vanChuyen,
               style: TextStyle(color: AppColor.textGrey, fontSize: 18.sp),
             ),
             const Icon(
@@ -190,7 +191,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
             ),
             Expanded(
               child: Text(
-                'Miễn phí vận chuyển và lắp ráp',
+                AppString.mienPhiVanChuyen,
                 style: TextStyle(fontSize: 18.sp),
               ),
             ),
@@ -203,7 +204,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Đơn vị: ',
+              AppString.donVi,
               style: TextStyle(color: AppColor.textGrey, fontSize: 18.sp),
             ),
             Expanded(
@@ -221,7 +222,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Bảo hành: ',
+              AppString.baoHanh,
               style: TextStyle(color: AppColor.textGrey, fontSize: 18.sp),
             ),
             Expanded(
@@ -239,12 +240,12 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Màu sắc: ',
+              AppString.mauSac,
               style: TextStyle(color: AppColor.textGrey, fontSize: 18.sp),
             ),
             Expanded(
               child: Text(
-                'Liên hệ để được tư vấn và xem hình ảnh thực tế',
+                AppString.lienHe,
                 style: TextStyle(fontSize: 18.sp),
               ),
             ),
@@ -257,7 +258,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Chất liệu: ',
+              AppString.chatLieu,
               style: TextStyle(color: AppColor.textGrey, fontSize: 18.sp),
             ),
             Expanded(
@@ -275,12 +276,14 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Tình trạng: ',
+              AppString.tinhTrang,
               style: TextStyle(color: AppColor.textGrey, fontSize: 18.sp),
             ),
             Expanded(
               child: Text(
-                product?.isOutOfStock == true ? "Hết hàng" : "Còn hàng",
+                product?.isOutOfStock == true
+                    ? AppString.hetHang
+                    : AppString.conHang,
                 style: TextStyle(fontSize: 18.sp),
               ),
             ),
@@ -334,7 +337,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
           ),
         ),
         Text(
-          "(Nhấn vào ảnh để phóng to)",
+          AppString.nhanVaoDeXemAnhPhongTo,
           style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12.sp),
         )
       ],

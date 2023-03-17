@@ -11,6 +11,7 @@ import 'package:tan_hoang_thach/model/product.dart';
 import 'package:tan_hoang_thach/routes.dart';
 import 'package:tan_hoang_thach/utils/colors.dart';
 import 'package:tan_hoang_thach/utils/files.dart';
+import 'package:tan_hoang_thach/utils/images.dart';
 import 'package:tan_hoang_thach/utils/strings.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -72,7 +73,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
                         height: 20.h,
                       ),
                       Text(
-                        'Sản phẩm liên quan',
+                        AppString.productRef,
                         style: TextStyle(
                             color: Colors.blue,
                             decoration: TextDecoration.none,
@@ -99,7 +100,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
               return Center(
                 child: InkWell(
                   onTap: () {
-                    _launchUrl('https://tanhoangthach-curtain.web.app/');
+                    _launchUrl(AppString.rootAddress);
                   },
                   child: Card(
                       elevation: 5,
@@ -107,7 +108,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                       child: Image.asset(
-                        'assets/logo.png',
+                        AppImage.appIcon,
                         width: 100.w,
                       )),
                 ),
@@ -137,7 +138,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
           height: 10.h,
         ),
         Text(
-          'Đã bán: ${product?.sold}',
+          '${AppString.daBan}${product?.sold}',
           style: TextStyle(fontSize: 5.sp),
         ),
         Divider(
@@ -174,7 +175,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Vận chuyển: ',
+              AppString.vanChuyen,
               style: TextStyle(color: AppColor.textGrey, fontSize: 5.sp),
             ),
             Icon(
@@ -187,7 +188,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
             ),
             Expanded(
               child: Text(
-                'Miễn phí vận chuyển và lắp ráp',
+                AppString.mienPhiVanChuyen,
                 style: TextStyle(fontSize: 5.sp),
               ),
             ),
@@ -200,7 +201,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Đơn vị: ',
+              AppString.donVi,
               style: TextStyle(color: AppColor.textGrey, fontSize: 5.sp),
             ),
             Expanded(
@@ -218,7 +219,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Bảo hành: ',
+              AppString.baoHanh,
               style: TextStyle(color: AppColor.textGrey, fontSize: 5.sp),
             ),
             Expanded(
@@ -236,12 +237,12 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Màu sắc: ',
+              AppString.mauSac,
               style: TextStyle(color: AppColor.textGrey, fontSize: 5.sp),
             ),
             Expanded(
               child: Text(
-                'Liên hệ để được tư vấn và xem hình ảnh thực tế',
+                AppString.lienHe,
                 style: TextStyle(fontSize: 5.sp),
               ),
             ),
@@ -254,7 +255,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Chất liệu: ',
+              AppString.chatLieu,
               style: TextStyle(color: AppColor.textGrey, fontSize: 5.sp),
             ),
             Expanded(
@@ -272,12 +273,14 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Tình trạng: ',
+              AppString.tinhTrang,
               style: TextStyle(color: AppColor.textGrey, fontSize: 5.sp),
             ),
             Expanded(
               child: Text(
-                product?.isOutOfStock == true ? "Hết hàng" : "Còn hàng",
+                product?.isOutOfStock == true
+                    ? AppString.hetHang
+                    : AppString.conHang,
                 style: TextStyle(fontSize: 5.sp),
               ),
             ),
@@ -331,7 +334,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
           ),
         ),
         Text(
-          "(Nhấn vào ảnh để phóng to)",
+          AppString.nhanVaoDeXemAnhPhongTo,
           style: TextStyle(fontStyle: FontStyle.italic, fontSize: 3.sp),
         )
       ],

@@ -6,4 +6,5 @@ class AppImage {
   static const String benefitImg = 'assets/desktop/benefit.jpg';
   static const String zaloIcon = 'assets/icon/ic_zalo.svg';
   static const String messIcon = 'assets/icon/ic_messenger.svg';
+  static const String appIcon = 'assets/logo.png';
 }

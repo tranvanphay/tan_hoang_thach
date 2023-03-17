@@ -3,6 +3,8 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tan_hoang_thach/home.dart';
 import 'package:tan_hoang_thach/routes.dart';
+import 'package:tan_hoang_thach/utils/images.dart';
+import 'package:tan_hoang_thach/utils/strings.dart';
 import 'package:tan_hoang_thach/widget/desktop/product_detail_desktop.dart';
 import 'package:tan_hoang_thach/widget/mobile/product_detail_mobile.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -60,7 +62,7 @@ class MyApp extends StatelessWidget {
                 return Center(
                   child: InkWell(
                     onTap: () {
-                      _launchUrl('https://tanhoangthach-curtain.web.app/');
+                      _launchUrl(AppString.rootAddress);
                     },
                     child: Card(
                         elevation: 5,
@@ -68,7 +70,7 @@ class MyApp extends StatelessWidget {
                           borderRadius: BorderRadius.circular(5.0),
                         ),
                         child: Image.asset(
-                          'assets/logo.png',
+                          AppImage.appIcon,
                           width: 100.w,
                         )),
                   ),

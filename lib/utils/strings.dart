@@ -1,6 +1,8 @@
 class AppString {
   static const String brand = "Tân Hoàng Thạch";
 
+  static const String rootAddress = 'https://tanhoangthach.pro/';
+
   static const String fanpage = "https://facebook.com/tanhoangthach.pro";
 
   static const String zaloPage = 'http://zalo.me/0369391202';
@@ -91,4 +93,20 @@ class AppString {
   static const String email = 'Email: tanhoangthach1202@gmail.com';
 
   static const String phoneNumber = 'Hotline: 0369391202 (Mr. Nhất)';
+
+  static const String mienPhiVanChuyen = 'Miễn phí vận chuyển và lắp ráp';
+
+  static const String productRef = 'Sản phẩm liên quan';
+
+  static const String daBan = 'Đã bán: ';
+  static const String vanChuyen = 'Vận chuyển: ';
+  static const String donVi = 'Đơn vị: ';
+  static const String baoHanh = 'Bảo hành: ';
+  static const String mauSac = 'Màu sắc: ';
+  static const String lienHe = 'Liên hệ để được tư vấn và xem hình ảnh thực tế';
+  static const String chatLieu = 'Chất liệu: ';
+  static const String tinhTrang = 'Tình trạng: ';
+  static const String conHang = 'Còn hàng';
+  static const String hetHang = 'Hết hàng';
+  static const String nhanVaoDeXemAnhPhongTo = '(Nhấn vào ảnh để phóng to)';
 }
