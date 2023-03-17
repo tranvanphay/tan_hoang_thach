@@ -34,19 +34,4 @@ class Product {
     type = json['type'];
     images = json['images'].cast<String>();
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['name'] = this.name;
-    data['stock_price'] = this.stockPrice;
-    data['sale_price'] = this.salePrice;
-    data['guarantee'] = this.guarantee;
-    data['is_out_of_stock'] = this.isOutOfStock;
-    data['unit'] = this.unit;
-    data['sold'] = this.sold;
-    data['material'] = this.material;
-    data['type'] = this.type;
-    data['images'] = this.images;
-    return data;
-  }
 }

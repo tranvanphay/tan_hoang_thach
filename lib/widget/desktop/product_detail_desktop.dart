@@ -18,7 +18,7 @@ import '../floating_action_button.dart';
 
 class ProductDetailDesktop extends StatefulWidget {
   String productId;
-  ProductDetailDesktop({Key? key, required this.productId});
+  ProductDetailDesktop({super.key, required this.productId});
 
   @override
   State<ProductDetailDesktop> createState() => _ProductDetailDesktopState();
@@ -27,13 +27,6 @@ class ProductDetailDesktop extends StatefulWidget {
 class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
   final ScrollController _controller = ScrollController();
   Product? _product;
-  void _scrollToTop() {
-    _controller.animateTo(
-      _controller.position.minScrollExtent,
-      duration: const Duration(seconds: 1),
-      curve: Curves.fastOutSlowIn,
-    );
-  }
 
   @override
   void initState() {

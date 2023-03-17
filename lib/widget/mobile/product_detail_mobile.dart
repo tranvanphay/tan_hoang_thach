@@ -19,7 +19,7 @@ import '../../utils/strings.dart';
 
 class ProductDetailMobile extends StatefulWidget {
   String productId;
-  ProductDetailMobile({Key? key, required this.productId});
+  ProductDetailMobile({super.key, required this.productId});
 
   @override
   State<ProductDetailMobile> createState() => _ProductDetailMobileState();
