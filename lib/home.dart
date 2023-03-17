@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                   ? ResponsiveRowColumnItem(child: HeaderMobile())
                   : ResponsiveRowColumnItem(child: HeaderDesktop()),
               ResponsiveRowColumnItem(
-                child: Container(
+                child: SizedBox(
                   width: double.infinity,
                   height: context.isPhone ? 70.h : 100.h,
                   child: Center(
