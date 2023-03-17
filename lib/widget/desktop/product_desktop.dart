@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:get/get.dart';
 import 'package:tan_hoang_thach/model/product.dart';
 import 'package:tan_hoang_thach/routes.dart';
 import 'package:tan_hoang_thach/utils/colors.dart';
+import 'package:tan_hoang_thach/utils/files.dart';
+import 'package:tan_hoang_thach/utils/strings.dart';
 
 class ProductDesktop extends StatefulWidget {
   const ProductDesktop({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class _ProductDesktopState extends State<ProductDesktop> {
                 Center(
                   child: Padding(
                     padding: EdgeInsets.symmetric(
-                      vertical: context.isPhone ? 5.h : 15.h,
+                      vertical: 15.h,
                       horizontal: 50.w,
                     ),
                     child: const Divider(
@@ -40,17 +41,17 @@ class _ProductDesktopState extends State<ProductDesktop> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    'Sản phẩm',
+                    AppString.product,
                     style: TextStyle(
                         color: Colors.blue,
                         decoration: TextDecoration.none,
                         fontWeight: FontWeight.bold,
-                        fontSize: context.isPhone ? 25.sp : 7.sp),
+                        fontSize: 7.sp),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(
-                    vertical: context.isPhone ? 5.h : 15.h,
+                    vertical: 15.h,
                     horizontal: 50.w,
                   ),
                 ),
@@ -83,7 +84,7 @@ class _ProductDesktopState extends State<ProductDesktop> {
   }
 
   Future<List<Product>> _readJson() async {
-    final String response = await rootBundle.loadString('assets/product.json');
+    final String response = await rootBundle.loadString(AppFiles.jsonProduct);
     List<dynamic> data = jsonDecode(response);
     return List<Product>.from(
         data.map<Product>((dynamic i) => Product.fromJson(i)));
@@ -117,8 +118,8 @@ class _ProductDesktopState extends State<ProductDesktop> {
                           padding: EdgeInsets.only(right: 1.w),
                           child: Text(
                             product.isOutOfStock == true
-                                ? '(Hết hàng) '
-                                : '(Còn hàng) ',
+                                ? AppString.outOfStock
+                                : AppString.stocking,
                             style: TextStyle(
                                 fontStyle: FontStyle.italic,
                                 color: product.isOutOfStock == true
@@ -141,7 +142,7 @@ class _ProductDesktopState extends State<ProductDesktop> {
                             ),
                           ),
                           Text(
-                            'Giá gốc: ${product.stockPrice}',
+                            '${AppString.stockPrices}${product.stockPrice}',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               decoration: TextDecoration.lineThrough,
@@ -151,7 +152,7 @@ class _ProductDesktopState extends State<ProductDesktop> {
                             ),
                           ),
                           Text(
-                            'Giá mới: ${product.salePrice}',
+                            '${AppString.newPrices}${product.salePrice}',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.w900,

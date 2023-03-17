@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tan_hoang_thach/utils/colors.dart';
+import 'package:tan_hoang_thach/utils/images.dart';
+import 'package:tan_hoang_thach/utils/strings.dart';
 
 class HeaderDesktop extends StatelessWidget {
+  const HeaderDesktop({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
-      Image.asset("assets/header_bg.png"),
+      Image.asset(AppImage.backgroundHeaderDesktop),
       Positioned(
           top: 10.h,
           left: 10.w,
@@ -14,7 +18,7 @@ class HeaderDesktop extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Màn rèm cao cấp nhập khẩu",
+                AppString.manRemCaoCapNhapKhau,
                 style: TextStyle(
                     color: AppColor.textGrey,
                     fontSize: 8.spMax,
@@ -24,7 +28,7 @@ class HeaderDesktop extends StatelessWidget {
                 height: 8,
               ),
               Text(
-                "Tân Hoàng Thạch",
+                AppString.brand,
                 style: TextStyle(
                     color: AppColor.textBlue,
                     fontSize: 10.spMax,
@@ -36,7 +40,7 @@ class HeaderDesktop extends StatelessWidget {
               ),
               RichText(
                 text: TextSpan(
-                  text: 'Ưu đãi ',
+                  text: AppString.uuDai,
                   style: TextStyle(
                       decoration: TextDecoration.none,
                       fontWeight: FontWeight.bold,
@@ -44,7 +48,7 @@ class HeaderDesktop extends StatelessWidget {
                       color: AppColor.textGrey),
                   children: [
                     TextSpan(
-                      text: 'cực hấp dẫn:',
+                      text: AppString.cucHapDan,
                       style: TextStyle(
                           decoration: TextDecoration.none,
                           fontSize: 6.sp,
@@ -56,23 +60,23 @@ class HeaderDesktop extends StatelessWidget {
               const SizedBox(
                 height: 8,
               ),
-              _endow('Miễn phí tư vấn, lắp đặt'),
+              _endow(AppString.mienPhiLapDat),
               const SizedBox(
                 height: 8,
               ),
-              _endow('Nhân viên tư vấn, báo giá tại nhà'),
+              _endow(AppString.baoGiaTaiNha),
               const SizedBox(
                 height: 8,
               ),
-              _endow('Giảm 10% cho đơn hàng trên 10tr '),
+              _endow(AppString.giam10PhanTram),
               const SizedBox(
                 height: 8,
               ),
-              _endow('Bảo hành 2 năm'),
+              _endow(AppString.baoHanhHaiNam),
               const SizedBox(
                 height: 8,
               ),
-              _endow('Giá nhập tại xưởng, không qua trung gian'),
+              _endow(AppString.giaNhapTaiXuong),
             ],
           ))
     ]);

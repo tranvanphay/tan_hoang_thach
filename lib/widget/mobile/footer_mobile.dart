@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tan_hoang_thach/utils/strings.dart';
 
 class FooterMobile extends StatelessWidget {
   const FooterMobile({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class FooterMobile extends StatelessWidget {
                     Align(
                       alignment: Alignment.center,
                       child: Text(
-                        'THÔNG TIN LIÊN HỆ',
+                        AppString.contactInfo,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 25.sp,
@@ -32,28 +33,28 @@ class FooterMobile extends StatelessWidget {
                       height: 14.h,
                     ),
                     Text(
-                      'Xưởng may: Thôn 1, xã Đức Nhuận, huyện Mộ Đức, tỉnh Quảng Ngãi',
+                      AppString.address1,
                       style: TextStyle(fontSize: 15.sp, color: Colors.white),
                     ),
                     SizedBox(
                       height: 7.h,
                     ),
                     Text(
-                      'Chi nhánh: 31 đường số 8, Phường Tăng Nhơn Phú A, Thành phố Thủ Đức, Thành phố Hồ Chí Minh',
+                      AppString.address2,
                       style: TextStyle(fontSize: 15.sp, color: Colors.white),
                     ),
                     SizedBox(
                       height: 7.h,
                     ),
                     Text(
-                      'Email: tanhoangthach1202@gmail.com',
+                      AppString.email,
                       style: TextStyle(fontSize: 15.sp, color: Colors.white),
                     ),
                     SizedBox(
                       height: 7.h,
                     ),
                     Text(
-                      'Hotline: 0369391202 (Mr. Nhất)',
+                      AppString.phoneNumber,
                       style: TextStyle(fontSize: 15.sp, color: Colors.white),
                     ),
                   ],

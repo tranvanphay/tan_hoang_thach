@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:get/get.dart';
 import 'package:tan_hoang_thach/model/product.dart';
 import 'package:tan_hoang_thach/routes.dart';
 import 'package:tan_hoang_thach/utils/colors.dart';
+import 'package:tan_hoang_thach/utils/files.dart';
+import 'package:tan_hoang_thach/utils/strings.dart';
 
 class ProductMobile extends StatefulWidget {
   const ProductMobile({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class _ProductMobileState extends State<ProductMobile> {
                 Center(
                   child: Padding(
                     padding: EdgeInsets.symmetric(
-                      vertical: context.isPhone ? 5.h : 15.h,
+                      vertical: 5.h,
                       horizontal: 50.w,
                     ),
                     child: const Divider(
@@ -38,16 +39,16 @@ class _ProductMobileState extends State<ProductMobile> {
                   ),
                 ),
                 Text(
-                  'Sản phẩm',
+                  AppString.product,
                   style: TextStyle(
                       color: Colors.blue,
                       decoration: TextDecoration.none,
                       fontWeight: FontWeight.bold,
-                      fontSize: context.isPhone ? 25.sp : 7.sp),
+                      fontSize: 25.sp),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(
-                    vertical: context.isPhone ? 5.h : 15.h,
+                    vertical: 5.h,
                     horizontal: 50.w,
                   ),
                 ),
@@ -81,7 +82,7 @@ class _ProductMobileState extends State<ProductMobile> {
   }
 
   Future<List<Product>> _readJson() async {
-    final String response = await rootBundle.loadString('assets/product.json');
+    final String response = await rootBundle.loadString(AppFiles.jsonProduct);
     List<dynamic> data = jsonDecode(response);
     return List<Product>.from(
         data.map<Product>((dynamic i) => Product.fromJson(i)));
@@ -100,11 +101,11 @@ class _ProductMobileState extends State<ProductMobile> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: 270.h,
+                height: 250.h,
                 child: Image.asset(_getImage(product)),
               ),
               SizedBox(
-                height: 80.h,
+                height: 100.h,
                 width: double.infinity,
                 child: Stack(
                   fit: StackFit.loose,
@@ -116,8 +117,8 @@ class _ProductMobileState extends State<ProductMobile> {
                           padding: EdgeInsets.only(right: 3.w),
                           child: Text(
                             product.isOutOfStock == true
-                                ? '(Hết hàng) '
-                                : '(Còn hàng) ',
+                                ? AppString.outOfStock
+                                : AppString.stocking,
                             style: TextStyle(
                                 fontStyle: FontStyle.italic,
                                 color: product.isOutOfStock == true
@@ -135,12 +136,12 @@ class _ProductMobileState extends State<ProductMobile> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 18.sp,
+                              fontSize: 15.sp,
                               color: AppColor.textGrey,
                             ),
                           ),
                           Text(
-                            'Giá gốc: ${product.stockPrice}',
+                            '${AppString.stockPrices}${product.stockPrice}',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               decoration: TextDecoration.lineThrough,
@@ -150,10 +151,10 @@ class _ProductMobileState extends State<ProductMobile> {
                             ),
                           ),
                           Text(
-                            'Giá mới: ${product.salePrice}',
+                            '${AppString.newPrices}${product.salePrice}',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              fontWeight: FontWeight.w900,
+                              fontWeight: FontWeight.w700,
                               fontSize: 18.sp,
                               color: AppColor.textBlue,
                             ),

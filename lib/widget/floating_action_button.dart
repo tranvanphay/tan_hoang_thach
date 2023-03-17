@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:nice_ripple/nice_ripple.dart';
+import 'package:tan_hoang_thach/utils/images.dart';
+import 'package:tan_hoang_thach/utils/strings.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class FloatingAction extends StatelessWidget {
-  const FloatingAction({Key? key}) : super(key: key);
+  final bool isPhone;
+  const FloatingAction({Key? key, required this.isPhone}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-          horizontal: context.isPhone ? 20.w : 8.w,
-          vertical: context.isPhone ? 16.h : 25.h),
+          horizontal: isPhone ? 20.w : 8.w, vertical: isPhone ? 16.h : 25.h),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -23,31 +24,31 @@ class FloatingAction extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               SizedBox(
-                width: context.isPhone ? 90.r : 70.r,
-                height: context.isPhone ? 90.r : 70.r,
+                width: isPhone ? 90.r : 70.r,
+                height: isPhone ? 90.r : 70.r,
                 child: FloatingActionButton(
                   elevation: 0,
                   heroTag: "btn1",
                   backgroundColor: Colors.transparent,
                   foregroundColor: Colors.transparent,
                   onPressed: () {
-                    _launchUrl('http://zalo.me/0369391202');
+                    _launchUrl(AppString.zaloPage);
                   },
                   child: NiceRipple(
                     child: SvgPicture.asset(
-                      'assets/icon/ic_zalo.svg',
+                      AppImage.zaloIcon,
                       semanticsLabel: 'Zalo',
-                      width: context.isPhone ? 70.r : 48.r,
+                      width: isPhone ? 70.r : 48.r,
                     ),
                   ),
                 ),
               ),
               SizedBox(
-                height: context.isPhone ? 10.h : 20.h,
+                height: isPhone ? 10.h : 20.h,
               ),
               SizedBox(
-                width: context.isPhone ? 90.r : 70.r,
-                height: context.isPhone ? 90.r : 70.r,
+                width: isPhone ? 90.r : 70.r,
+                height: isPhone ? 90.r : 70.r,
                 child: FloatingActionButton(
                   elevation: 0,
                   heroTag: "btn2",
@@ -55,11 +56,11 @@ class FloatingAction extends StatelessWidget {
                   foregroundColor: Colors.transparent,
                   onPressed: () {
                     //Gọi 2 lần để không bị lỗi trên ip12 ios 16
-                    if (context.isPhone) {
-                      _launchUrl('http://m.me/tanhoangthach.pro');
-                      _launchUrl('http://m.me/tanhoangthach.pro');
+                    if (isPhone) {
+                      _launchUrl(AppString.messenger);
+                      _launchUrl(AppString.messenger);
                     } else {
-                      _launchUrl('http://m.me/tanhoangthach.pro');
+                      _launchUrl(AppString.messenger);
                     }
                   },
                   child: NiceRipple(
@@ -69,9 +70,9 @@ class FloatingAction extends StatelessWidget {
                     duration: const Duration(seconds: 2),
                     curve: Curves.easeInOut,
                     child: SvgPicture.asset(
-                      'assets/icon/ic_messenger.svg',
+                      AppImage.messIcon,
                       semanticsLabel: 'Messenger',
-                      width: context.isPhone ? 70.r : 48.r,
+                      width: isPhone ? 70.r : 48.r,
                     ),
                   ),
                 ),
@@ -79,15 +80,15 @@ class FloatingAction extends StatelessWidget {
             ],
           ),
           SizedBox(
-            width: context.isPhone ? 90.r : 70.r,
-            height: context.isPhone ? 90.r : 70.r,
+            width: isPhone ? 90.r : 70.r,
+            height: isPhone ? 90.r : 70.r,
             child: FloatingActionButton(
               elevation: 0,
               heroTag: "btn3",
               backgroundColor: Colors.transparent,
               foregroundColor: Colors.transparent,
               onPressed: () {
-                _makePhoneCall('0369391202');
+                _makePhoneCall(AppString.hotline);
               },
               child: NiceRipple(
                 rippleColor: const Color.fromARGB(255, 0, 255, 0),
@@ -98,7 +99,7 @@ class FloatingAction extends StatelessWidget {
                 child: Icon(
                   Icons.phone_rounded,
                   color: Colors.white,
-                  size: context.isPhone ? 60.r : 48.r,
+                  size: isPhone ? 60.r : 48.r,
                 ),
               ),
             ),

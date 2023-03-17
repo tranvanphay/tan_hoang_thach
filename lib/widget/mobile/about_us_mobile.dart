@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:tan_hoang_thach/utils/colors.dart';
+import 'package:tan_hoang_thach/utils/images.dart';
+import 'package:tan_hoang_thach/utils/strings.dart';
 
 class AboutUsMobile extends StatelessWidget {
   const AboutUsMobile({Key? key}) : super(key: key);
@@ -11,29 +12,29 @@ class AboutUsMobile extends StatelessWidget {
     return Column(
       children: [
         Text(
-          'Về chúng tôi',
+          AppString.aboutUs,
           style: TextStyle(
               color: Colors.blue,
               decoration: TextDecoration.none,
               fontWeight: FontWeight.bold,
-              fontSize: context.isPhone ? 25.sp : 7.sp),
+              fontSize: 25.sp),
         ),
         SizedBox(
-          height: context.isPhone ? 5.h : 15.h,
+          height: 5.h,
         ),
         Text(
-          'Tân Hoàng Thạch chuyên thi công, thiết kế màn rèm cho nhà ở, văn phòng, chung cư hay địa điểm kinh doanh với mẫu mã đa dạng, độ thẩm mĩ cao phù hợp với mọi không gian. Sản phẩm của chúng tôi mang độ bền cao, dễ dàng tháo - lắp, vệ sinh.',
+          AppString.aboutUsText,
           style: TextStyle(
               color: AppColor.textGrey,
               decoration: TextDecoration.none,
-              fontSize: context.isPhone ? 18.sp : 4.sp),
+              fontSize: 18.sp),
           textAlign: TextAlign.center,
         ),
         SizedBox(
-          height: context.isPhone ? 5.h : 15.h,
+          height: 5.h,
         ),
         Image.asset(
-          'assets/desktop/worker.jpg',
+          AppImage.aboutUsImg,
           height: 300.h,
         ),
       ],

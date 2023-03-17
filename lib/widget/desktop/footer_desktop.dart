@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'dart:ui' as ui;
+import 'package:tan_hoang_thach/utils/strings.dart';
 
 class FooterDesktop extends StatelessWidget {
   const FooterDesktop({Key? key}) : super(key: key);
@@ -20,7 +20,7 @@ class FooterDesktop extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'THÔNG TIN LIÊN HỆ',
+                      AppString.contactInfo,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 5.sp,
@@ -30,28 +30,28 @@ class FooterDesktop extends StatelessWidget {
                       height: 20.h,
                     ),
                     Text(
-                      'Xưởng may: Thôn 1, xã Đức Nhuận, huyện Mộ Đức, tỉnh Quảng Ngãi',
+                      AppString.address1,
                       style: TextStyle(fontSize: 3.sp, color: Colors.white),
                     ),
                     SizedBox(
                       height: 10.h,
                     ),
                     Text(
-                      'Chi nhánh: 31 đường số 8, Phường Tăng Nhơn Phú A, Thành phố Thủ Đức, Thành phố Hồ Chí Minh',
+                      AppString.address2,
                       style: TextStyle(fontSize: 3.sp, color: Colors.white),
                     ),
                     SizedBox(
                       height: 10.h,
                     ),
                     Text(
-                      'Email: tanhoangthach1202@gmail.com',
+                      AppString.email,
                       style: TextStyle(fontSize: 3.sp, color: Colors.white),
                     ),
                     SizedBox(
                       height: 10.h,
                     ),
                     Text(
-                      'Hotline: 0369391202 (Mr. Nhất)',
+                      AppString.phoneNumber,
                       style: TextStyle(fontSize: 3.sp, color: Colors.white),
                     ),
                   ],

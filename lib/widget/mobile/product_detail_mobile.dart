@@ -11,8 +11,11 @@ import 'package:get/get.dart';
 import 'package:tan_hoang_thach/model/product.dart';
 import 'package:tan_hoang_thach/routes.dart';
 import 'package:tan_hoang_thach/utils/colors.dart';
+import 'package:tan_hoang_thach/utils/files.dart';
 import 'package:tan_hoang_thach/widget/floating_action_button.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../utils/strings.dart';
 
 class ProductDetailMobile extends StatefulWidget {
   String productId;
@@ -25,13 +28,6 @@ class ProductDetailMobile extends StatefulWidget {
 class _ProductDetailMobileState extends State<ProductDetailMobile> {
   final ScrollController _controller = ScrollController();
   Product? _product;
-  void _scrollToTop() {
-    _controller.animateTo(
-      _controller.position.minScrollExtent,
-      duration: const Duration(seconds: 1),
-      curve: Curves.fastOutSlowIn,
-    );
-  }
 
   @override
   void initState() {
@@ -40,84 +36,92 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColor.appBg,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: const FloatingAction(),
-      body: FutureBuilder<Product>(
-          future: _getProductById(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              _product = snapshot.data;
-              return SingleChildScrollView(
-                  controller: _controller,
-                  padding: EdgeInsets.only(left: 10.w, right: 10.w, top: 8.h),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Card(
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 10.r, vertical: 10.r),
-                          child: Column(
-                            children: [_photoView(_product), _info(_product)],
+    return WillPopScope(
+      onWillPop: () {
+        Navigator.pop(context);
+        return Future(() => true);
+      },
+      child: Scaffold(
+        backgroundColor: AppColor.appBg,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingAction(
+          isPhone: context.isPhone,
+        ),
+        body: FutureBuilder<Product>(
+            future: _getProductById(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                _product = snapshot.data;
+                return SingleChildScrollView(
+                    controller: _controller,
+                    padding: EdgeInsets.only(left: 10.w, right: 10.w, top: 8.h),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Card(
+                          elevation: 5,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10.r, vertical: 10.r),
+                            child: Column(
+                              children: [_photoView(_product), _info(_product)],
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      Text(
-                        'Sản phẩm liên quan',
-                        style: TextStyle(
-                            color: Colors.blue,
-                            decoration: TextDecoration.none,
-                            fontWeight: FontWeight.bold,
-                            fontSize: context.isPhone ? 25.sp : 7.sp),
-                      ),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      Card(
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        Text(
+                          'Sản phẩm liên quan',
+                          style: TextStyle(
+                              color: Colors.blue,
+                              decoration: TextDecoration.none,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25.sp),
+                        ),
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        Card(
+                          elevation: 5,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10.r, vertical: 10.r),
+                            child: _relatedProducts(_product?.type),
+                          ),
+                        ),
+                      ],
+                    ));
+              } else if (snapshot.hasError) {
+                return Center(
+                  child: InkWell(
+                    onTap: () {
+                      _launchUrl('https://tanhoangthach-curtain.web.app/');
+                    },
+                    child: Card(
                         elevation: 5,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.0),
                         ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 10.r, vertical: 10.r),
-                          child: _relatedProducts(_product?.type),
-                        ),
-                      ),
-                    ],
-                  ));
-            } else if (snapshot.hasError) {
-              return Center(
-                child: InkWell(
-                  onTap: () {
-                    _launchUrl('https://tanhoangthach-curtain.web.app/');
-                  },
-                  child: Card(
-                      elevation: 5,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      child: Image.asset(
-                        'assets/logo.png',
-                        width: 100.w,
-                      )),
-                ),
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          }),
+                        child: Image.asset(
+                          'assets/logo.png',
+                          width: 100.w,
+                        )),
+                  ),
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            }),
+      ),
     );
   }
 
@@ -418,11 +422,11 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: 270.h,
+                height: 250.h,
                 child: Image.asset(_getImage(product)),
               ),
               SizedBox(
-                height: 80.h,
+                height: 100.h,
                 width: double.infinity,
                 child: Stack(
                   fit: StackFit.loose,
@@ -434,8 +438,8 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                           padding: EdgeInsets.only(right: 3.w),
                           child: Text(
                             product.isOutOfStock == true
-                                ? '(Hết hàng) '
-                                : '(Còn hàng) ',
+                                ? AppString.outOfStock
+                                : AppString.stocking,
                             style: TextStyle(
                                 fontStyle: FontStyle.italic,
                                 color: product.isOutOfStock == true
@@ -453,12 +457,12 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 18.sp,
+                              fontSize: 15.sp,
                               color: AppColor.textGrey,
                             ),
                           ),
                           Text(
-                            'Giá gốc: ${product.stockPrice}',
+                            '${AppString.stockPrices}${product.stockPrice}',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               decoration: TextDecoration.lineThrough,
@@ -468,10 +472,10 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                             ),
                           ),
                           Text(
-                            'Giá mới: ${product.salePrice}',
+                            '${AppString.newPrices}${product.salePrice}',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              fontWeight: FontWeight.w900,
+                              fontWeight: FontWeight.w700,
                               fontSize: 18.sp,
                               color: AppColor.textBlue,
                             ),
@@ -487,8 +491,8 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
         ),
       ),
       onTap: () {
-        Navigator.pushReplacementNamed(
-            context, '${Routes.productDetailMob}?type=${product.type}');
+        Navigator.pushNamed(
+            context, "${Routes.productDetailMob}?type=${product.type}");
       },
     );
   }
@@ -500,7 +504,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
   }
 
   Future<List<Product>> _readJson() async {
-    final String response = await rootBundle.loadString('assets/product.json');
+    final String response = await rootBundle.loadString(AppFiles.jsonProduct);
     List<dynamic> data = jsonDecode(response);
     return List<Product>.from(
         data.map<Product>((dynamic i) => Product.fromJson(i)));

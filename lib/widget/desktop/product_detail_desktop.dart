@@ -10,6 +10,8 @@ import 'package:get/get.dart';
 import 'package:tan_hoang_thach/model/product.dart';
 import 'package:tan_hoang_thach/routes.dart';
 import 'package:tan_hoang_thach/utils/colors.dart';
+import 'package:tan_hoang_thach/utils/files.dart';
+import 'package:tan_hoang_thach/utils/strings.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../floating_action_button.dart';
@@ -43,7 +45,9 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
     return Scaffold(
         backgroundColor: AppColor.appBg,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: const FloatingAction(),
+        floatingActionButton: FloatingAction(
+          isPhone: context.isPhone,
+        ),
         body: FutureBuilder<Product>(
           future: _getProductById(),
           builder: (context, snapshoot) {
@@ -80,7 +84,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
                             color: Colors.blue,
                             decoration: TextDecoration.none,
                             fontWeight: FontWeight.bold,
-                            fontSize: context.isPhone ? 25.sp : 7.sp),
+                            fontSize: 7.sp),
                       ),
                       SizedBox(
                         height: 5.h,
@@ -436,8 +440,8 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
                           padding: EdgeInsets.only(right: 1.w),
                           child: Text(
                             product.isOutOfStock == true
-                                ? '(Hết hàng) '
-                                : '(Còn hàng) ',
+                                ? AppString.outOfStock
+                                : AppString.stocking,
                             style: TextStyle(
                                 fontStyle: FontStyle.italic,
                                 color: product.isOutOfStock == true
@@ -460,7 +464,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
                             ),
                           ),
                           Text(
-                            'Giá gốc: ${product.stockPrice}',
+                            '${AppString.stockPrices}${product.stockPrice}',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               decoration: TextDecoration.lineThrough,
@@ -470,7 +474,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
                             ),
                           ),
                           Text(
-                            'Giá mới: ${product.salePrice}',
+                            '${AppString.newPrices}${product.salePrice}',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.w900,
@@ -502,7 +506,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
   }
 
   Future<List<Product>> _readJson() async {
-    final String response = await rootBundle.loadString('assets/product.json');
+    final String response = await rootBundle.loadString(AppFiles.jsonProduct);
     List<dynamic> data = jsonDecode(response);
     return List<Product>.from(
         data.map<Product>((dynamic i) => Product.fromJson(i)));
