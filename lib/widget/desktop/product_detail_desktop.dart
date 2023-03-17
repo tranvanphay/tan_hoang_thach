@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:tan_hoang_thach/model/product.dart';
 import 'package:tan_hoang_thach/routes.dart';
 import 'package:tan_hoang_thach/utils/colors.dart';
+import 'package:tan_hoang_thach/utils/desktop_font_size.dart';
 import 'package:tan_hoang_thach/utils/files.dart';
 import 'package:tan_hoang_thach/utils/images.dart';
 import 'package:tan_hoang_thach/utils/strings.dart';
@@ -78,7 +79,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
                             color: Colors.blue,
                             decoration: TextDecoration.none,
                             fontWeight: FontWeight.bold,
-                            fontSize: 7.sp),
+                            fontSize: DesktopFontSize.textHeader3),
                       ),
                       SizedBox(
                         height: 5.h,
@@ -130,7 +131,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
         Text(
           product?.name ?? '',
           style: TextStyle(
-              fontSize: 7.sp,
+              fontSize: DesktopFontSize.textHeader3,
               color: AppColor.textBlue,
               fontWeight: FontWeight.w600),
         ),
@@ -139,7 +140,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
         ),
         Text(
           '${AppString.daBan}${product?.sold}',
-          style: TextStyle(fontSize: 5.sp),
+          style: TextStyle(fontSize: DesktopFontSize.textSizeBig),
         ),
         Divider(
           color: AppColor.textBlue,
@@ -153,7 +154,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
               '${product?.stockPrice}',
               style: TextStyle(
                   color: AppColor.textGrey,
-                  fontSize: 5.sp,
+                  fontSize: DesktopFontSize.textSizeBig,
                   decoration: TextDecoration.lineThrough),
             ),
             SizedBox(
@@ -163,7 +164,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
               '${product?.salePrice}',
               style: TextStyle(
                   color: Colors.red,
-                  fontSize: 7.sp,
+                  fontSize: DesktopFontSize.textHeader3,
                   fontWeight: FontWeight.w700),
             ),
           ],
@@ -176,7 +177,9 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
           children: [
             Text(
               AppString.vanChuyen,
-              style: TextStyle(color: AppColor.textGrey, fontSize: 5.sp),
+              style: TextStyle(
+                  color: AppColor.textGrey,
+                  fontSize: DesktopFontSize.textSizeBig),
             ),
             Icon(
               Icons.delivery_dining_outlined,
@@ -189,7 +192,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
             Expanded(
               child: Text(
                 AppString.mienPhiVanChuyen,
-                style: TextStyle(fontSize: 5.sp),
+                style: TextStyle(fontSize: DesktopFontSize.textSizeBig),
               ),
             ),
           ],
@@ -202,12 +205,14 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
           children: [
             Text(
               AppString.donVi,
-              style: TextStyle(color: AppColor.textGrey, fontSize: 5.sp),
+              style: TextStyle(
+                  color: AppColor.textGrey,
+                  fontSize: DesktopFontSize.textSizeBig),
             ),
             Expanded(
               child: Text(
                 product?.unit ?? '',
-                style: TextStyle(fontSize: 5.sp),
+                style: TextStyle(fontSize: DesktopFontSize.textSizeBig),
               ),
             ),
           ],
@@ -220,12 +225,14 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
           children: [
             Text(
               AppString.baoHanh,
-              style: TextStyle(color: AppColor.textGrey, fontSize: 5.sp),
+              style: TextStyle(
+                  color: AppColor.textGrey,
+                  fontSize: DesktopFontSize.textSizeBig),
             ),
             Expanded(
               child: Text(
                 product?.guarantee ?? '',
-                style: TextStyle(fontSize: 5.sp),
+                style: TextStyle(fontSize: DesktopFontSize.textSizeBig),
               ),
             ),
           ],
@@ -238,12 +245,14 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
           children: [
             Text(
               AppString.mauSac,
-              style: TextStyle(color: AppColor.textGrey, fontSize: 5.sp),
+              style: TextStyle(
+                  color: AppColor.textGrey,
+                  fontSize: DesktopFontSize.textSizeBig),
             ),
             Expanded(
               child: Text(
                 AppString.lienHe,
-                style: TextStyle(fontSize: 5.sp),
+                style: TextStyle(fontSize: DesktopFontSize.textSizeBig),
               ),
             ),
           ],
@@ -256,12 +265,14 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
           children: [
             Text(
               AppString.chatLieu,
-              style: TextStyle(color: AppColor.textGrey, fontSize: 5.sp),
+              style: TextStyle(
+                  color: AppColor.textGrey,
+                  fontSize: DesktopFontSize.textSizeBig),
             ),
             Expanded(
               child: Text(
                 product?.material ?? '',
-                style: TextStyle(fontSize: 5.sp),
+                style: TextStyle(fontSize: DesktopFontSize.textSizeBig),
               ),
             ),
           ],
@@ -274,14 +285,16 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
           children: [
             Text(
               AppString.tinhTrang,
-              style: TextStyle(color: AppColor.textGrey, fontSize: 5.sp),
+              style: TextStyle(
+                  color: AppColor.textGrey,
+                  fontSize: DesktopFontSize.textSizeBig),
             ),
             Expanded(
               child: Text(
                 product?.isOutOfStock == true
                     ? AppString.hetHang
                     : AppString.conHang,
-                style: TextStyle(fontSize: 5.sp),
+                style: TextStyle(fontSize: DesktopFontSize.textSizeBig),
               ),
             ),
           ],
@@ -335,7 +348,9 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
         ),
         Text(
           AppString.nhanVaoDeXemAnhPhongTo,
-          style: TextStyle(fontStyle: FontStyle.italic, fontSize: 3.sp),
+          style: TextStyle(
+              fontStyle: FontStyle.italic,
+              fontSize: DesktopFontSize.textSizeSmall),
         )
       ],
     );
@@ -439,6 +454,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
                                 ? AppString.outOfStock
                                 : AppString.stocking,
                             style: TextStyle(
+                                fontSize: DesktopFontSize.textSizeSmall,
                                 fontStyle: FontStyle.italic,
                                 color: product.isOutOfStock == true
                                     ? Colors.redAccent
@@ -455,7 +471,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 4.sp,
+                              fontSize: DesktopFontSize.textSizeNormal,
                               color: AppColor.textGrey,
                             ),
                           ),
@@ -465,7 +481,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
                             style: TextStyle(
                               decoration: TextDecoration.lineThrough,
                               fontWeight: FontWeight.w700,
-                              fontSize: (3.5).sp,
+                              fontSize: DesktopFontSize.textSizeSmall,
                               color: AppColor.textGrey,
                             ),
                           ),
@@ -474,7 +490,7 @@ class _ProductDetailDesktopState extends State<ProductDetailDesktop> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.w900,
-                              fontSize: 4.sp,
+                              fontSize: DesktopFontSize.textSizeNormal,
                               color: AppColor.textBlue,
                             ),
                           ),

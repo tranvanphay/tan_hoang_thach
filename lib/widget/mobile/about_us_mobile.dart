@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tan_hoang_thach/utils/colors.dart';
 import 'package:tan_hoang_thach/utils/images.dart';
+import 'package:tan_hoang_thach/utils/mobile_font_size.dart';
 import 'package:tan_hoang_thach/utils/strings.dart';
 
 class AboutUsMobile extends StatelessWidget {
@@ -17,7 +18,7 @@ class AboutUsMobile extends StatelessWidget {
               color: Colors.blue,
               decoration: TextDecoration.none,
               fontWeight: FontWeight.bold,
-              fontSize: 25.sp),
+              fontSize: MobileFontSize.textHeader3),
         ),
         SizedBox(
           height: 5.h,
@@ -27,7 +28,7 @@ class AboutUsMobile extends StatelessWidget {
           style: TextStyle(
               color: AppColor.textGrey,
               decoration: TextDecoration.none,
-              fontSize: 18.sp),
+              fontSize: MobileFontSize.textSizeNormal),
           textAlign: TextAlign.center,
         ),
         SizedBox(

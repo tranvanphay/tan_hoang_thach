@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tan_hoang_thach/utils/images.dart';
+import 'package:tan_hoang_thach/utils/mobile_font_size.dart';
 import 'package:tan_hoang_thach/utils/strings.dart';
 
 class BenefitMobile extends StatelessWidget {
@@ -29,7 +30,7 @@ class BenefitMobile extends StatelessWidget {
               color: Colors.blue,
               decoration: TextDecoration.none,
               fontWeight: FontWeight.bold,
-              fontSize: 25.sp),
+              fontSize: MobileFontSize.textHeader3),
         ),
         SizedBox(
           height: 5.h,
@@ -77,8 +78,9 @@ class BenefitMobile extends StatelessWidget {
           Flexible(
             child: Text(
               content,
-              style:
-                  TextStyle(fontSize: 18.sp, decoration: TextDecoration.none),
+              style: TextStyle(
+                  fontSize: MobileFontSize.textSizeNormal,
+                  decoration: TextDecoration.none),
             ),
           ),
         ],

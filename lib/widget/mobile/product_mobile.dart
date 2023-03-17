@@ -8,6 +8,7 @@ import 'package:tan_hoang_thach/model/product.dart';
 import 'package:tan_hoang_thach/routes.dart';
 import 'package:tan_hoang_thach/utils/colors.dart';
 import 'package:tan_hoang_thach/utils/files.dart';
+import 'package:tan_hoang_thach/utils/mobile_font_size.dart';
 import 'package:tan_hoang_thach/utils/strings.dart';
 
 class ProductMobile extends StatefulWidget {
@@ -44,7 +45,7 @@ class _ProductMobileState extends State<ProductMobile> {
                       color: Colors.blue,
                       decoration: TextDecoration.none,
                       fontWeight: FontWeight.bold,
-                      fontSize: 25.sp),
+                      fontSize: MobileFontSize.textHeader3),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(
@@ -121,6 +122,7 @@ class _ProductMobileState extends State<ProductMobile> {
                                 : AppString.stocking,
                             style: TextStyle(
                                 fontStyle: FontStyle.italic,
+                                fontSize: MobileFontSize.textSizeSmall,
                                 color: product.isOutOfStock == true
                                     ? Colors.redAccent
                                     : null),
@@ -136,7 +138,7 @@ class _ProductMobileState extends State<ProductMobile> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 15.sp,
+                              fontSize: MobileFontSize.textSizeNormal,
                               color: AppColor.textGrey,
                             ),
                           ),
@@ -146,7 +148,7 @@ class _ProductMobileState extends State<ProductMobile> {
                             style: TextStyle(
                               decoration: TextDecoration.lineThrough,
                               fontWeight: FontWeight.w700,
-                              fontSize: 12.sp,
+                              fontSize: MobileFontSize.textSizeSmall,
                               color: AppColor.textGrey,
                             ),
                           ),
@@ -155,7 +157,7 @@ class _ProductMobileState extends State<ProductMobile> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 18.sp,
+                              fontSize: MobileFontSize.textSizeNormal,
                               color: AppColor.textBlue,
                             ),
                           ),

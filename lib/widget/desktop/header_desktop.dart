@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tan_hoang_thach/utils/colors.dart';
+import 'package:tan_hoang_thach/utils/desktop_font_size.dart';
 import 'package:tan_hoang_thach/utils/images.dart';
 import 'package:tan_hoang_thach/utils/strings.dart';
 
@@ -21,7 +22,7 @@ class HeaderDesktop extends StatelessWidget {
                 AppString.manRemCaoCapNhapKhau,
                 style: TextStyle(
                     color: AppColor.textGrey,
-                    fontSize: 8.spMax,
+                    fontSize: DesktopFontSize.textHeader2,
                     decoration: TextDecoration.none),
               ),
               const SizedBox(
@@ -31,7 +32,7 @@ class HeaderDesktop extends StatelessWidget {
                 AppString.brand,
                 style: TextStyle(
                     color: AppColor.textBlue,
-                    fontSize: 10.spMax,
+                    fontSize: DesktopFontSize.textHeader1,
                     fontWeight: FontWeight.bold,
                     decoration: TextDecoration.none),
               ),
@@ -44,14 +45,14 @@ class HeaderDesktop extends StatelessWidget {
                   style: TextStyle(
                       decoration: TextDecoration.none,
                       fontWeight: FontWeight.bold,
-                      fontSize: 6.sp,
+                      fontSize: DesktopFontSize.textHeader3,
                       color: AppColor.textGrey),
                   children: [
                     TextSpan(
                       text: AppString.cucHapDan,
                       style: TextStyle(
                           decoration: TextDecoration.none,
-                          fontSize: 6.sp,
+                          fontSize: DesktopFontSize.textHeader3,
                           color: Colors.black45),
                     ),
                   ],
@@ -96,7 +97,7 @@ class HeaderDesktop extends StatelessWidget {
         Text(
           content,
           style: TextStyle(
-              fontSize: 5.sp,
+              fontSize: DesktopFontSize.textSizeBig,
               decoration: TextDecoration.none,
               color: Colors.red),
         )

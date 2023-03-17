@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tan_hoang_thach/utils/desktop_font_size.dart';
 import 'package:tan_hoang_thach/utils/images.dart';
 import 'package:tan_hoang_thach/utils/strings.dart';
 
@@ -31,7 +32,7 @@ class BenefitDesktop extends StatelessWidget {
                 color: Colors.blue,
                 decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold,
-                fontSize: 7.sp),
+                fontSize: DesktopFontSize.textHeader3),
           ),
         ),
         SizedBox(
@@ -97,7 +98,9 @@ class BenefitDesktop extends StatelessWidget {
           Flexible(
             child: Text(
               content,
-              style: TextStyle(fontSize: 4.sp, decoration: TextDecoration.none),
+              style: TextStyle(
+                  fontSize: DesktopFontSize.textSizeNormal,
+                  decoration: TextDecoration.none),
             ),
           ),
         ],

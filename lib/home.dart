@@ -3,6 +3,8 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tan_hoang_thach/utils/colors.dart';
+import 'package:tan_hoang_thach/utils/desktop_font_size.dart';
+import 'package:tan_hoang_thach/utils/mobile_font_size.dart';
 import 'package:tan_hoang_thach/utils/strings.dart';
 import 'package:tan_hoang_thach/widget/desktop/about_us_desktop.dart';
 import 'package:tan_hoang_thach/widget/desktop/benefit_desktop.dart';
@@ -115,7 +117,10 @@ class HomePage extends StatelessWidget {
               child: Text(
                 AppString.getBenefitNow,
                 style: TextStyle(
-                    color: Colors.white, fontSize: isPhone ? 20.sp : 6.sp),
+                    color: Colors.white,
+                    fontSize: isPhone
+                        ? MobileFontSize.textHeader3
+                        : DesktopFontSize.textHeader3),
               ),
             ),
           ),

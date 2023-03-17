@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tan_hoang_thach/utils/colors.dart';
 import 'package:tan_hoang_thach/utils/images.dart';
+import 'package:tan_hoang_thach/utils/mobile_font_size.dart';
 
 import '../../utils/strings.dart';
 
@@ -26,7 +27,7 @@ class HeaderMobile extends StatelessWidget {
               AppString.manRemCaoCapNhapKhau,
               style: TextStyle(
                   color: AppColor.textGrey,
-                  fontSize: 25.spMax,
+                  fontSize: MobileFontSize.textHeader2,
                   decoration: TextDecoration.none),
             ),
             const SizedBox(
@@ -36,7 +37,7 @@ class HeaderMobile extends StatelessWidget {
               AppString.brand,
               style: TextStyle(
                   color: AppColor.textBlue,
-                  fontSize: 35.spMax,
+                  fontSize: MobileFontSize.textHeader1,
                   fontWeight: FontWeight.bold,
                   decoration: TextDecoration.none),
             ),
@@ -50,13 +51,13 @@ class HeaderMobile extends StatelessWidget {
                     decoration: TextDecoration.none,
                     fontWeight: FontWeight.bold,
                     color: Colors.black87,
-                    fontSize: 20.sp),
+                    fontSize: MobileFontSize.textHeader3),
                 children: [
                   TextSpan(
                     text: AppString.cucHapDan,
                     style: TextStyle(
                         decoration: TextDecoration.none,
-                        fontSize: 20.sp,
+                        fontSize: MobileFontSize.textHeader3,
                         color: AppColor.textGrey),
                   ),
                 ],
@@ -103,7 +104,7 @@ class HeaderMobile extends StatelessWidget {
           child: Text(
             content,
             style: TextStyle(
-                fontSize: 18.sp,
+                fontSize: MobileFontSize.textSizeBig,
                 decoration: TextDecoration.none,
                 color: AppColor.textGrey),
           ),

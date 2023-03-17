@@ -7,6 +7,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:tan_hoang_thach/model/product.dart';
 import 'package:tan_hoang_thach/routes.dart';
 import 'package:tan_hoang_thach/utils/colors.dart';
+import 'package:tan_hoang_thach/utils/desktop_font_size.dart';
 import 'package:tan_hoang_thach/utils/files.dart';
 import 'package:tan_hoang_thach/utils/strings.dart';
 
@@ -46,7 +47,7 @@ class _ProductDesktopState extends State<ProductDesktop> {
                         color: Colors.blue,
                         decoration: TextDecoration.none,
                         fontWeight: FontWeight.bold,
-                        fontSize: 7.sp),
+                        fontSize: DesktopFontSize.textHeader3),
                   ),
                 ),
                 Padding(
@@ -122,6 +123,7 @@ class _ProductDesktopState extends State<ProductDesktop> {
                                 : AppString.stocking,
                             style: TextStyle(
                                 fontStyle: FontStyle.italic,
+                                fontSize: DesktopFontSize.textSizeSmall,
                                 color: product.isOutOfStock == true
                                     ? Colors.redAccent
                                     : null),
@@ -137,7 +139,7 @@ class _ProductDesktopState extends State<ProductDesktop> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 4.sp,
+                              fontSize: DesktopFontSize.textSizeNormal,
                               color: AppColor.textGrey,
                             ),
                           ),
@@ -147,7 +149,7 @@ class _ProductDesktopState extends State<ProductDesktop> {
                             style: TextStyle(
                               decoration: TextDecoration.lineThrough,
                               fontWeight: FontWeight.w700,
-                              fontSize: (3.5).sp,
+                              fontSize: DesktopFontSize.textSizeSmall,
                               color: AppColor.textGrey,
                             ),
                           ),
@@ -156,7 +158,7 @@ class _ProductDesktopState extends State<ProductDesktop> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.w900,
-                              fontSize: 4.sp,
+                              fontSize: DesktopFontSize.textSizeNormal,
                               color: AppColor.textBlue,
                             ),
                           ),

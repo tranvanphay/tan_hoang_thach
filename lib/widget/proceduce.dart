@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tan_hoang_thach/utils/colors.dart';
+import 'package:tan_hoang_thach/utils/desktop_font_size.dart';
+import 'package:tan_hoang_thach/utils/mobile_font_size.dart';
 import 'package:tan_hoang_thach/utils/strings.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
@@ -22,7 +24,9 @@ class Proceduce extends StatelessWidget {
                 color: Colors.blue,
                 decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold,
-                fontSize: isPhone ? 25.sp : 7.sp),
+                fontSize: isPhone
+                    ? MobileFontSize.textHeader3
+                    : DesktopFontSize.textHeader3),
           ),
         ),
         SizedBox(
@@ -42,7 +46,9 @@ class Proceduce extends StatelessWidget {
                   style: TextStyle(
                       color: Colors.white,
                       decoration: TextDecoration.none,
-                      fontSize: isPhone ? 18.sp : 4.sp),
+                      fontSize: isPhone
+                          ? MobileFontSize.textSizeNormal
+                          : DesktopFontSize.textSizeNormal),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -61,7 +67,9 @@ class Proceduce extends StatelessWidget {
                 color: AppColor.textGrey,
                 decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold,
-                fontSize: isPhone ? 18.sp : 4.sp),
+                fontSize: isPhone
+                    ? MobileFontSize.textSizeNormal
+                    : DesktopFontSize.textSizeNormal),
           ),
         ),
         _timeLine(context),
@@ -172,7 +180,9 @@ class _Indicator extends StatelessWidget {
         child: Text(number,
             style: GoogleFonts.lobster(
               color: Colors.blue,
-              fontSize: isPhone ? 12.sp : 3.sp,
+              fontSize: isPhone
+                  ? MobileFontSize.textSizeSmall
+                  : DesktopFontSize.textSizeSmall,
             )),
       ),
     );
@@ -204,7 +214,9 @@ class _Step extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.blue,
                     fontWeight: FontWeight.bold,
-                    fontSize: isPhone ? 18.sp : 4.sp,
+                    fontSize: isPhone
+                        ? MobileFontSize.textSizeNormal
+                        : DesktopFontSize.textSizeNormal,
                   ),
                 ),
               ),
@@ -217,7 +229,9 @@ class _Step extends StatelessWidget {
                   desc,
                   style: TextStyle(
                     color: Colors.blue.withOpacity(0.8),
-                    fontSize: isPhone ? 18.sp : 4.sp,
+                    fontSize: isPhone
+                        ? MobileFontSize.textSizeNormal
+                        : DesktopFontSize.textSizeNormal,
                   ),
                 ),
               ),

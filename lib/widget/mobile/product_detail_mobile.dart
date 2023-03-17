@@ -13,6 +13,7 @@ import 'package:tan_hoang_thach/routes.dart';
 import 'package:tan_hoang_thach/utils/colors.dart';
 import 'package:tan_hoang_thach/utils/files.dart';
 import 'package:tan_hoang_thach/utils/images.dart';
+import 'package:tan_hoang_thach/utils/mobile_font_size.dart';
 import 'package:tan_hoang_thach/widget/floating_action_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -81,7 +82,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                               color: Colors.blue,
                               decoration: TextDecoration.none,
                               fontWeight: FontWeight.bold,
-                              fontSize: 25.sp),
+                              fontSize: MobileFontSize.textHeader3),
                         ),
                         SizedBox(
                           height: 5.h,
@@ -134,7 +135,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
         Text(
           product?.name ?? '',
           style: TextStyle(
-              fontSize: 25.sp,
+              fontSize: MobileFontSize.textHeader3,
               color: AppColor.textBlue,
               fontWeight: FontWeight.w600),
         ),
@@ -143,7 +144,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
         ),
         Text(
           '${AppString.daBan}${product?.sold}',
-          style: TextStyle(fontSize: 15.sp),
+          style: TextStyle(fontSize: MobileFontSize.textSizeBig),
         ),
         Divider(
           color: AppColor.textBlue,
@@ -157,7 +158,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
               '${product?.stockPrice}',
               style: TextStyle(
                   color: AppColor.textGrey,
-                  fontSize: 18.sp,
+                  fontSize: MobileFontSize.textSizeBig,
                   decoration: TextDecoration.lineThrough),
             ),
             SizedBox(
@@ -167,7 +168,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
               '${product?.salePrice}',
               style: TextStyle(
                   color: Colors.red,
-                  fontSize: 20.sp,
+                  fontSize: MobileFontSize.textHeader3,
                   fontWeight: FontWeight.w700),
             ),
           ],
@@ -180,7 +181,9 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
           children: [
             Text(
               AppString.vanChuyen,
-              style: TextStyle(color: AppColor.textGrey, fontSize: 18.sp),
+              style: TextStyle(
+                  color: AppColor.textGrey,
+                  fontSize: MobileFontSize.textSizeBig),
             ),
             const Icon(
               Icons.delivery_dining_outlined,
@@ -192,7 +195,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
             Expanded(
               child: Text(
                 AppString.mienPhiVanChuyen,
-                style: TextStyle(fontSize: 18.sp),
+                style: TextStyle(fontSize: MobileFontSize.textSizeBig),
               ),
             ),
           ],
@@ -205,12 +208,14 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
           children: [
             Text(
               AppString.donVi,
-              style: TextStyle(color: AppColor.textGrey, fontSize: 18.sp),
+              style: TextStyle(
+                  color: AppColor.textGrey,
+                  fontSize: MobileFontSize.textSizeBig),
             ),
             Expanded(
               child: Text(
                 product?.unit ?? '',
-                style: TextStyle(fontSize: 18.sp),
+                style: TextStyle(fontSize: MobileFontSize.textSizeBig),
               ),
             ),
           ],
@@ -223,12 +228,14 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
           children: [
             Text(
               AppString.baoHanh,
-              style: TextStyle(color: AppColor.textGrey, fontSize: 18.sp),
+              style: TextStyle(
+                  color: AppColor.textGrey,
+                  fontSize: MobileFontSize.textSizeBig),
             ),
             Expanded(
               child: Text(
                 product?.guarantee ?? '',
-                style: TextStyle(fontSize: 18.sp),
+                style: TextStyle(fontSize: MobileFontSize.textSizeBig),
               ),
             ),
           ],
@@ -241,12 +248,14 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
           children: [
             Text(
               AppString.mauSac,
-              style: TextStyle(color: AppColor.textGrey, fontSize: 18.sp),
+              style: TextStyle(
+                  color: AppColor.textGrey,
+                  fontSize: MobileFontSize.textSizeBig),
             ),
             Expanded(
               child: Text(
                 AppString.lienHe,
-                style: TextStyle(fontSize: 18.sp),
+                style: TextStyle(fontSize: MobileFontSize.textSizeBig),
               ),
             ),
           ],
@@ -259,12 +268,14 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
           children: [
             Text(
               AppString.chatLieu,
-              style: TextStyle(color: AppColor.textGrey, fontSize: 18.sp),
+              style: TextStyle(
+                  color: AppColor.textGrey,
+                  fontSize: MobileFontSize.textSizeBig),
             ),
             Expanded(
               child: Text(
                 product?.material ?? '',
-                style: TextStyle(fontSize: 18.sp),
+                style: TextStyle(fontSize: MobileFontSize.textSizeBig),
               ),
             ),
           ],
@@ -277,14 +288,16 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
           children: [
             Text(
               AppString.tinhTrang,
-              style: TextStyle(color: AppColor.textGrey, fontSize: 18.sp),
+              style: TextStyle(
+                  color: AppColor.textGrey,
+                  fontSize: MobileFontSize.textSizeBig),
             ),
             Expanded(
               child: Text(
                 product?.isOutOfStock == true
                     ? AppString.hetHang
                     : AppString.conHang,
-                style: TextStyle(fontSize: 18.sp),
+                style: TextStyle(fontSize: MobileFontSize.textSizeBig),
               ),
             ),
           ],
@@ -338,7 +351,9 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
         ),
         Text(
           AppString.nhanVaoDeXemAnhPhongTo,
-          style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12.sp),
+          style: TextStyle(
+              fontStyle: FontStyle.italic,
+              fontSize: MobileFontSize.textSizeSmall),
         )
       ],
     );
@@ -444,6 +459,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                                 ? AppString.outOfStock
                                 : AppString.stocking,
                             style: TextStyle(
+                                fontSize: MobileFontSize.textSizeSmall,
                                 fontStyle: FontStyle.italic,
                                 color: product.isOutOfStock == true
                                     ? Colors.redAccent
@@ -460,7 +476,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 15.sp,
+                              fontSize: MobileFontSize.textSizeNormal,
                               color: AppColor.textGrey,
                             ),
                           ),
@@ -470,7 +486,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                             style: TextStyle(
                               decoration: TextDecoration.lineThrough,
                               fontWeight: FontWeight.w700,
-                              fontSize: 12.sp,
+                              fontSize: MobileFontSize.textSizeSmall,
                               color: AppColor.textGrey,
                             ),
                           ),
@@ -479,7 +495,7 @@ class _ProductDetailMobileState extends State<ProductDetailMobile> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 18.sp,
+                              fontSize: MobileFontSize.textSizeNormal,
                               color: AppColor.textBlue,
                             ),
                           ),

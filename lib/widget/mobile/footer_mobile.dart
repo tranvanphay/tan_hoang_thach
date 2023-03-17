@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tan_hoang_thach/utils/mobile_font_size.dart';
 import 'package:tan_hoang_thach/utils/strings.dart';
 
 class FooterMobile extends StatelessWidget {
@@ -25,7 +26,7 @@ class FooterMobile extends StatelessWidget {
                         AppString.contactInfo,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 25.sp,
+                            fontSize: MobileFontSize.textHeader3,
                             color: Colors.white),
                       ),
                     ),
@@ -34,28 +35,28 @@ class FooterMobile extends StatelessWidget {
                     ),
                     Text(
                       AppString.address1,
-                      style: TextStyle(fontSize: 15.sp, color: Colors.white),
+                      style: _contentStyle,
                     ),
                     SizedBox(
                       height: 7.h,
                     ),
                     Text(
                       AppString.address2,
-                      style: TextStyle(fontSize: 15.sp, color: Colors.white),
+                      style: _contentStyle,
                     ),
                     SizedBox(
                       height: 7.h,
                     ),
                     Text(
                       AppString.email,
-                      style: TextStyle(fontSize: 15.sp, color: Colors.white),
+                      style: _contentStyle,
                     ),
                     SizedBox(
                       height: 7.h,
                     ),
                     Text(
                       AppString.phoneNumber,
-                      style: TextStyle(fontSize: 15.sp, color: Colors.white),
+                      style: _contentStyle,
                     ),
                   ],
                 ),
@@ -66,4 +67,7 @@ class FooterMobile extends StatelessWidget {
       ),
     );
   }
+
+  TextStyle get _contentStyle =>
+      TextStyle(fontSize: MobileFontSize.textSizeNormal, color: Colors.white);
 }
