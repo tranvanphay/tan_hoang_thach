@@ -27,14 +27,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: AppColor.appBg,
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: FloatingAction(
-          isPhone: context.isPhone,
-        ),
-        body: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: AppColor.appBg,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingAction(
+        isPhone: context.isPhone,
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
             padding:
                 EdgeInsets.symmetric(horizontal: context.isPhone ? 0 : 50.w),
             child: context.isPhone ? _homeMobile() : _homeDesktop()),
