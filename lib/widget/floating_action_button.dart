@@ -7,6 +7,9 @@ import 'package:tan_hoang_thach/utils/images.dart';
 import 'package:tan_hoang_thach/utils/strings.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../utils/desktop_font_size.dart';
+import '../utils/mobile_font_size.dart';
+
 class FloatingAction extends StatelessWidget {
   final bool isPhone;
   const FloatingAction({Key? key, required this.isPhone}) : super(key: key);
@@ -51,6 +54,44 @@ class FloatingAction extends StatelessWidget {
                 height: isPhone ? 90.r : 70.r,
                 child: FloatingActionButton(
                   elevation: 0,
+                  heroTag: "btn4",
+                  backgroundColor: Colors.transparent,
+                  foregroundColor: Colors.transparent,
+                  onPressed: () {
+                    _makePhoneCall(AppString.hotline2);
+                  },
+                  child: NiceRipple(
+                    rippleColor: const Color.fromARGB(255, 0, 200, 83),
+                    radius: 100,
+                    rippleShape: BoxShape.circle,
+                    duration: const Duration(seconds: 2),
+                    curve: Curves.easeInOut,
+                    child: Icon(
+                      Icons.phone_rounded,
+                      color: const Color.fromARGB(255, 247, 147, 30),
+                      size: isPhone ? 60.r : 40.r,
+                    ),
+                  ),
+                ),
+              ),
+              Text(
+                'Đà Nẵng',
+                style: TextStyle(
+                    color: const Color.fromARGB(255, 247, 147, 30),
+                    fontSize: isPhone
+                        ? MobileFontSize.textSizeSmall
+                        : DesktopFontSize.textSizeSmall),
+              ),
+            ],
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              SizedBox(
+                width: isPhone ? 90.r : 70.r,
+                height: isPhone ? 90.r : 70.r,
+                child: FloatingActionButton(
+                  elevation: 0,
                   heroTag: "btn2",
                   backgroundColor: Colors.transparent,
                   foregroundColor: Colors.transparent,
@@ -77,32 +118,43 @@ class FloatingAction extends StatelessWidget {
                   ),
                 ),
               ),
-            ],
-          ),
-          SizedBox(
-            width: isPhone ? 90.r : 70.r,
-            height: isPhone ? 90.r : 70.r,
-            child: FloatingActionButton(
-              elevation: 0,
-              heroTag: "btn3",
-              backgroundColor: Colors.transparent,
-              foregroundColor: Colors.transparent,
-              onPressed: () {
-                _makePhoneCall(AppString.hotline);
-              },
-              child: NiceRipple(
-                rippleColor: const Color.fromARGB(255, 0, 255, 0),
-                radius: 100.w,
-                rippleShape: BoxShape.circle,
-                duration: const Duration(seconds: 2),
-                curve: Curves.easeInOut,
-                child: Icon(
-                  Icons.phone_rounded,
-                  color: Colors.white,
-                  size: isPhone ? 60.r : 48.r,
+              SizedBox(
+                height: isPhone ? 10.h : 20.h,
+              ),
+              SizedBox(
+                width: isPhone ? 90.r : 70.r,
+                height: isPhone ? 90.r : 70.r,
+                child: FloatingActionButton(
+                  elevation: 0,
+                  heroTag: "btn3",
+                  backgroundColor: Colors.transparent,
+                  foregroundColor: Colors.transparent,
+                  onPressed: () {
+                    _makePhoneCall(AppString.hotline1);
+                  },
+                  child: NiceRipple(
+                    rippleColor: const Color.fromARGB(255, 0, 200, 83),
+                    radius: 100,
+                    rippleShape: BoxShape.circle,
+                    duration: const Duration(seconds: 2),
+                    curve: Curves.easeInOut,
+                    child: Icon(
+                      Icons.phone_rounded,
+                      color: const Color.fromARGB(255, 247, 147, 30),
+                      size: isPhone ? 60.r : 40.r,
+                    ),
+                  ),
                 ),
               ),
-            ),
+              Text(
+                'Hồ Chí Minh',
+                style: TextStyle(
+                    color: const Color.fromARGB(255, 247, 147, 30),
+                    fontSize: isPhone
+                        ? MobileFontSize.textSizeSmall
+                        : DesktopFontSize.textSizeSmall),
+              ),
+            ],
           )
         ],
       ),

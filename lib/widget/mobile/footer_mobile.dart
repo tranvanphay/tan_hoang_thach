@@ -48,6 +48,13 @@ class FooterMobile extends StatelessWidget {
                       height: 7.h,
                     ),
                     Text(
+                      AppString.address3,
+                      style: _contentStyle,
+                    ),
+                    SizedBox(
+                      height: 7.h,
+                    ),
+                    Text(
                       AppString.email,
                       style: _contentStyle,
                     ),

@@ -1,11 +1,11 @@
 {
-    "name": "tan_hoang_thach",
-    "short_name": "tan_hoang_thach",
+    "name": "Tân Hoàng Thạch",
+    "short_name": "Tân Hoàng Thạch",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "description": "Tân Hoàng Thạch là cơ sở sản xuất, thi công màn rèm uy tín với hơn 10 năm kinh nghiệm, mạng lưới phân phối lớn ở các tỉnh miền Trung, miền Nam và các tỉnh lân cận",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

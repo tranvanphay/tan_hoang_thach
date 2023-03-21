@@ -9,7 +9,8 @@ class AppString {
 
   static const String messenger = 'http://m.me/tanhoangthach.pro';
 
-  static const String hotline = '0369391202';
+  static const String hotline1 = '0369391202';
+  static const String hotline2 = '0989487482';
 
   static const String getBenefitNow = "NHẬN ƯU ĐÃI NGAY";
 
@@ -88,7 +89,10 @@ class AppString {
       'Xưởng may: Thôn 1, xã Đức Nhuận, huyện Mộ Đức, tỉnh Quảng Ngãi';
 
   static const String address2 =
-      'Chi nhánh: 31 đường số 8, Phường Tăng Nhơn Phú A, Thành phố Thủ Đức, Thành phố Hồ Chí Minh';
+      'Chi nhánh HCM: 31 đường số 8, phường Tăng Nhơn Phú A, Thành phố Thủ Đức, Thành phố Hồ Chí Minh';
+
+  static const String address3 =
+      'Chi nhánh Đà Nẵng: K1E/6 Đỗ Thúc Tịnh, phường Khuê Trung, quận Cẩm Lệ, Thành phố Đà Nẵng';
 
   static const String email = 'Email: tanhoangthach1202@gmail.com';
 

@@ -1,16 +1,14 @@
-# tan_hoang_thach
+# Tân Hoàng Thạch
 
-A new Flutter project.
+Tân Hoàng Thạch là cơ sở sản xuất, thi công màn rèm uy tín với hơn 10 năm kinh nghiệm, mạng lưới phân phối lớn ở các tỉnh miền Trung, miền Nam và các tỉnh lân cận.
 
-## Getting Started
+## Build web optimization command
 
-This project is a starting point for a Flutter application.
+flutter build web --web-renderer=html --release
 
-A few resources to get you started if this is your first Flutter project:
+## Web infomation
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Hosting: using free firebase hosting with pha***ran99@gmail.com
+- Domain: 
+ + Free domain: tanhoangthach-curtain.web.app
+ + MatBao domain: tanhoangthach.pro (managed by pha***ran99@gmail.com, login with Google)
